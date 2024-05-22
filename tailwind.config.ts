@@ -10,5 +10,11 @@ export default {
       },
     },
   },
+  "files.associations": {
+    "*.css": "tailwindcss",
+  },
+  "editor.quickSuggestions": {
+    strings: "on",
+  },
   plugins: [],
 } satisfies Config;
