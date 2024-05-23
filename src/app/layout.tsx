@@ -1,4 +1,5 @@
 import "~/styles/globals.css";
+import { ApolloWrapper } from "./ApolloWrapper";
 
 import { GeistSans } from "geist/font/sans";
 import Link from "next/link";
@@ -28,9 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <TopNavBar />
+        <ApolloWrapper>
+          <TopNavBar />
 
-        {children}
+          {children}
+        </ApolloWrapper>
       </body>
     </html>
   );

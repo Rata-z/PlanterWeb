@@ -4,7 +4,10 @@
 
 - [x] Deploy to Vercel
 - [x] UI prototype
-- [ ] Configure Database
+- [ ] Configure Database{
+- [x] Set ApolloClient
+- [ ] Create Database
+- [ ] Set GraphQL}
 - [ ] Connect to Database
 - [ ] Add authentication
 - [ ] Post Creation
