@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-import { ApolloWrapper } from "./ApolloWrapper";
+import { ApolloWrapper } from "./apolloWrapper";
 
 import { GeistSans } from "geist/font/sans";
 import Link from "next/link";
