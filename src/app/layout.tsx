@@ -1,10 +1,17 @@
 import "~/styles/globals.css";
 import Link from "next/link";
+import { Inter, Nunito_Sans } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  variable: "--font-nunito-sans",
+});
 
 export const metadata = {
-  title: "Planter Web",
-  description: "New planter web app",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  title: "Planter",
+  description: "Planter is plant care oriented platform.",
+  icons: { icon: "../assets/icons/logo.svg" },
 };
 
 function TopNavBar() {
@@ -24,11 +31,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
+    <html lang="en">
+      <body className={`${inter.variable} ${nunitoSans.variable}`}>
         <TopNavBar />
-
-        <CookiesProvider>{children}</CookiesProvider>
+        {children}
       </body>
     </html>
   );
