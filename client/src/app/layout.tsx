@@ -1,5 +1,4 @@
-import "~/styles/globals.css";
-import Link from "next/link";
+import "./globals.css";
 import { Inter, Nunito_Sans } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -21,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${nunitoSans.variable}`}>
+      <body className={` ${nunitoSans.variable} font-sans bg-slate-700`}>
         {children}
       </body>
     </html>
