@@ -1,11 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.ts",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "tsx server",
+    "dev": "tsx watch server",
+    "build": "tsc",
+    "watch": "tsc -p tsconfig.json --watch"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +19,13 @@
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "method-override": "^3.0.0",
-    "mongoose": "^8.4.0"
+    "mongoose": "^8.4.0",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.2"
+    "@types/node": "^20.12.13",
+    "nodemon": "^3.1.2",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
   }
 }
