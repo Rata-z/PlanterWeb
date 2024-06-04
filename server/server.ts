@@ -1,20 +1,19 @@
-import { connectDB } from "./db.js";
+import { connectDB } from "./config/mongoConfig.js";
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import Post from "./models/Post.js";
-import { connectFirebase, listUsers } from "./firebase.js";
+import Post from "./api/models/Post.js";
+import { connectFirebase, listUsers } from "./config/firebaseConfig.js";
 import { Auth, getAuth } from "firebase-admin/auth";
+import { corsOptions } from "./config/corsOptions.js";
+import userRoutes from "./api/routes/userRoutes.js";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 connectFirebase();
@@ -43,15 +42,19 @@ app.get("/api/home", (req, res) => {
   res.json({ message: "Hello World!" });
 });
 
-app.post("/signup", async (req, res) => {
-  const userResponse = await auth.createUser({
-    email: req.body.email,
-    password: req.body.password,
-    emailVerified: false,
-    disabled: false,
-  });
-  res.send(userResponse);
-});
+app.use("/api/user", userRoutes);
+
+// app.post("/signup", async (req, res) => {
+//   const userResponse = await auth.createUser({
+//     email: req.body.email,
+//     password: req.body.password,
+//     emailVerified: false,
+//     disabled: false,
+//   });
+//   res.send(userResponse);
+// });
+
+// Usually, you would handle authentication client-side and send a token to the backend.
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Inter, Nunito_Sans } from "next/font/google";
-
+import { Providers } from "./_providers";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={` ${nunitoSans.variable} font-sans bg-slate-700`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
