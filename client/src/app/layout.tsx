@@ -1,10 +1,12 @@
 import "./globals.css";
 import { Inter, Nunito_Sans } from "next/font/google";
-import { Providers } from "./_providers";
+import { Providers } from "../components/_providers";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-nunito-sans",
+  weight: ["400"],
+  adjustFontFallback: false,
 });
 
 export const metadata = {
