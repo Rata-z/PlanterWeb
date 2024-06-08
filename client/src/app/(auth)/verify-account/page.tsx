@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@nextui-org/button";
-import { auth } from "@/lib/firebase/config";
+
 import { redirect, useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 import Link from "next/link";

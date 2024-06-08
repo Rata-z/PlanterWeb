@@ -25,7 +25,7 @@ function SignIn() {
       console.log({ res });
       setEmail("");
       setPassword("");
-      // router.push("/");
+      router.push("/");
     } catch (e) {
       setPassword("");
       console.log(e);

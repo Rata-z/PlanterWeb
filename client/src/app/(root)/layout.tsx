@@ -6,7 +6,6 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <main className="flex flex-row">
-      <Sidebar />
       <div className="flex-col  flex-1">
         <Topbar />
         {children}
