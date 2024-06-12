@@ -7,6 +7,8 @@ import { connectFirebase, listUsers } from "./config/firebaseConfig.js";
 import { Auth, getAuth } from "firebase-admin/auth";
 import { corsOptions } from "./config/corsOptions.js";
 import userRoutes from "./api/routes/userRoutes.js";
+import postRoutes from "./api/routes/postRoutes.js";
+import middleware from "./api/middleware/index.js";
 
 dotenv.config();
 
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 connectFirebase();
 connectDB();
+app.use(middleware.decodeToken);
 // listUsers()
 //   .then((result) => {
 //     console.log(result.users);
@@ -43,6 +46,7 @@ app.get("/api/home", (req, res) => {
 });
 
 app.use("/api/user", userRoutes);
+app.use("/api/posts", postRoutes);
 
 // app.post("/signup", async (req, res) => {
 //   const userResponse = await auth.createUser({

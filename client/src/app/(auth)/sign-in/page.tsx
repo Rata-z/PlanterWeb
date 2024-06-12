@@ -5,31 +5,34 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "@/context/authContext";
 import { IconContext } from "react-icons";
+import PasswordButton from "@/components/passwordButton";
+import { Input } from "@nextui-org/input";
 import Link from "next/link";
 
 function SignIn() {
-  const { signIn, signOut, currentUser } = useAuth();
+  const { signIn, currentUser, continueWithGoogle } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<null | string>(null);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const router = useRouter();
-  console.log(currentUser);
-
-  const handleLogOut = () => {
-    signOut();
-  };
 
   const handleSignInWithEmail = async () => {
     try {
-      const res = await signIn(email, password);
-      console.log({ res });
-      setEmail("");
-      setPassword("");
+      await signIn(email, password);
       router.push("/");
     } catch (e) {
       setPassword("");
       console.log(e);
       setError("Invalid email or password.");
+    }
+  };
+  const handleContinueWithGoogle = async () => {
+    try {
+      await continueWithGoogle();
+      router.push("/");
+    } catch (error) {
+      setError("Google authentication error.");
     }
   };
   return (
@@ -38,18 +41,26 @@ function SignIn() {
         <h1 className="text-4xl pb-2">Sign In</h1>
         {error && <p className="text-tiny text-red-700">{error}</p>}
         <div className="flex flex-col gap-4 pt-2">
-          <input
+          <Input
             type="email"
-            placeholder="Email"
+            label="Email"
             value={email}
             onChange={(text) => setEmail(text.target.value)}
-            className="rounded-2xl border-2 border-gray-400 p-2"
+            className=" border-gray-400 "
+            variant="bordered"
           />
-          <input
-            type="password"
-            placeholder="Password"
+          <Input
+            type={isPasswordVisible ? "text" : "password"}
+            label="Password"
             value={password}
-            className="rounded-2xl border-2 border-gray-400 p-2"
+            className=" border-gray-400 "
+            variant="bordered"
+            endContent={
+              <PasswordButton
+                isVisible={isPasswordVisible}
+                toggleVisibility={setIsPasswordVisible}
+              />
+            }
             onChange={(password) => setPassword(password.target.value)}
           />
         </div>
@@ -65,7 +76,7 @@ function SignIn() {
           <Button
             color="primary"
             startContent={<FcGoogle />}
-            onPress={handleLogOut}
+            onPress={handleContinueWithGoogle}
           >
             Continue with Google
           </Button>

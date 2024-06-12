@@ -1,4 +1,4 @@
-import Topbar from "@/components/topbar";
+import Navbar from "@/components/navbar";
 
 export default function RootLayout({
   children,
@@ -6,7 +6,7 @@ export default function RootLayout({
   return (
     <main className="flex flex-row">
       <div className="flex-col  flex-1">
-        <Topbar />
+        <Navbar />
         {children}
       </div>
     </main>

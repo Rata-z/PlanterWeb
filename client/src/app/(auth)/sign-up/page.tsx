@@ -5,12 +5,22 @@ import { Button } from "@nextui-org/button";
 import { auth } from "@/lib/firebase/config";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
+import PasswordButton from "@/components/passwordButton";
+import { Input } from "@nextui-org/input";
 import Link from "next/link";
 import { FirebaseError } from "firebase/app";
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [confrimPasswordError, setConfirmPasswordError] = useState<
+    string | null
+  >(null);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const { signUp } = useAuth();
@@ -18,9 +28,10 @@ const SignUp = () => {
 
   const handleSignUpWithEmail = async () => {
     if (confirmPassword !== password) {
-      setError("Passwords are not matching");
-      setPassword("");
-      setConfirmPassword("");
+      setConfirmPasswordError("Passwords are not matching");
+      setPasswordError(null);
+      setEmailError(null);
+      setError(null);
     } else {
       try {
         const res = await signUp(email, password);
@@ -31,58 +42,98 @@ const SignUp = () => {
       } catch (e) {
         console.error(e);
         if (e instanceof FirebaseError) {
-          let msg = "";
           switch (e.code) {
             case "auth/invalid-email":
-              msg = "Invalid email format";
+              setEmailError("Invalid email format");
+              setPasswordError(null);
+              setConfirmPasswordError(null);
+              setError(null);
               break;
             case "auth/missing-password":
-              msg = "Missing Password";
+              setPasswordError("Missing Password");
+              setEmailError(null);
+              setConfirmPasswordError(null);
+              setError(null);
               break;
             case "auth/weak-password":
-              msg = "Password should be at least 6 characters";
+              setPasswordError("Password should be at least 6 characters");
+              setEmailError(null);
+              setConfirmPasswordError(null);
+              setError(null);
               break;
             case "auth/email-already-in-use":
-              msg = "Email is already in use";
+              setEmailError("Email is already in use");
+              setPasswordError(null);
+              setConfirmPasswordError(null);
+              setError(null);
               break;
             default:
-              msg = "An undefined Error happened. Please try again.";
+              setError("An undefined Error happened. Please try again.");
+              setPasswordError(null);
+              setEmailError(null);
+              setConfirmPasswordError(null);
+              setError(null);
           }
-          setError(msg);
         } else {
           setError("An undefined Error happened. Please try again.");
+          setPasswordError(null);
+          setEmailError(null);
+          setConfirmPasswordError(null);
+          setError(null);
         }
         setPassword("");
         setConfirmPassword("");
       }
     }
   };
+
   return (
     <section className="flex flex-col">
       <div className=" flex flex-col">
         <h1 className="text-4xl pb-2">Sign Up</h1>
         {error && <p className="text-tiny text-red-700">{error}</p>}
         <div className="flex flex-col gap-4 pt-2">
-          <input
+          <Input
             type="email"
-            placeholder="Email"
+            label="Email"
             value={email}
             onChange={(text) => setEmail(text.target.value)}
-            className="rounded-2xl border-2 border-gray-400 p-2"
+            className=" border-gray-400 "
+            variant="bordered"
+            isInvalid={emailError === null ? false : true}
+            errorMessage={emailError}
           />
-          <input
-            type="password"
-            placeholder="Password"
+          <Input
+            type={isPasswordVisible ? "text" : "password"}
+            label="Password"
             value={password}
-            className="rounded-2xl border-2 border-gray-400 p-2"
+            className=" border-gray-400 "
+            variant="bordered"
+            endContent={
+              <PasswordButton
+                isVisible={isPasswordVisible}
+                toggleVisibility={setIsPasswordVisible}
+              />
+            }
             onChange={(password) => setPassword(password.target.value)}
+            isInvalid={passwordError === null ? false : true}
+            errorMessage={passwordError}
           />
-          <input
-            type="password"
-            placeholder="Confirm Password"
+          <Input
+            type={isConfirmPasswordVisible ? "text" : "password"}
+            label="Confirm Password"
             value={confirmPassword}
-            className="rounded-2xl border-2 border-gray-400 p-2"
+            className=" border-gray-400 "
+            variant="bordered"
+            endContent={
+              <PasswordButton
+                isVisible={isConfirmPasswordVisible}
+                toggleVisibility={setIsConfirmPasswordVisible}
+              />
+            }
             onChange={(password) => setConfirmPassword(password.target.value)}
+            isInvalid={confrimPasswordError === null ? false : true}
+            errorMessage={confrimPasswordError}
           />
         </div>
       </div>

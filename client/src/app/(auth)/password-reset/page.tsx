@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 import Link from "next/link";
+import { Input } from "@nextui-org/input";
 
 function PasswordReset() {
   const { sendResetLink } = useAuth();
@@ -34,17 +35,19 @@ function PasswordReset() {
     <section className="flex flex-col">
       <div className=" flex flex-col">
         <h1 className="text-4xl pb-2">Reset your password</h1>
-        {error && <p className="text-tiny text-red-700">{error}</p>}
         {message ? (
           <p className="text-sm text-green-700">{message}</p>
         ) : (
           <div className="flex flex-col gap-4 pt-2">
-            <input
+            <Input
               type="email"
-              placeholder="Email"
+              label="Email"
               value={email}
               onChange={(text) => setEmail(text.target.value)}
-              className="rounded-2xl border-2 border-gray-400 p-2"
+              className=" border-gray-400 "
+              variant="bordered"
+              isInvalid={error === null ? false : true}
+              errorMessage={error}
             />
           </div>
         )}
