@@ -46,7 +46,7 @@ function PasswordReset() {
               onChange={(text) => setEmail(text.target.value)}
               className=" border-gray-400 "
               variant="bordered"
-              isInvalid={error === null ? false : true}
+              isInvalid={!error ? false : true}
               errorMessage={error}
             />
           </div>

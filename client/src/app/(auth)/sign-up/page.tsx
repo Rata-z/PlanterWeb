@@ -100,7 +100,7 @@ const SignUp = () => {
             onChange={(text) => setEmail(text.target.value)}
             className=" border-gray-400 "
             variant="bordered"
-            isInvalid={emailError === null ? false : true}
+            isInvalid={!emailError ? false : true}
             errorMessage={emailError}
           />
           <Input
@@ -116,7 +116,7 @@ const SignUp = () => {
               />
             }
             onChange={(password) => setPassword(password.target.value)}
-            isInvalid={passwordError === null ? false : true}
+            isInvalid={!passwordError ? false : true}
             errorMessage={passwordError}
           />
           <Input
@@ -132,7 +132,7 @@ const SignUp = () => {
               />
             }
             onChange={(password) => setConfirmPassword(password.target.value)}
-            isInvalid={confrimPasswordError === null ? false : true}
+            isInvalid={!confrimPasswordError ? false : true}
             errorMessage={confrimPasswordError}
           />
         </div>

@@ -4,15 +4,16 @@ class Middleware {
   async decodeToken(req, res, next) {
     const authHeader = req.headers.authorization;
 
-    if (authHeader === "Bearer" || authHeader === undefined)
+    if (authHeader === "Bearer" || !authHeader)
       return res.json({ message: "Unauthorized. Token is missing." });
 
     const token: string = authHeader.split(" ")[1];
+
     try {
       const decodedValue = await getAuth().verifyIdToken(token);
       if (decodedValue) {
         req.user = decodedValue;
-        return decodedValue.email_verified === true
+        return decodedValue.email_verified
           ? next()
           : res.json({ message: "Unauthorized. Email not verified." });
       }
