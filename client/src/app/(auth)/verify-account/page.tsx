@@ -1,28 +1,30 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/button";
 
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 import Link from "next/link";
-import { FirebaseError } from "firebase/app";
 
 const VerifyAccount = () => {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { currentUser, sendVerificationLink } = useAuth();
   const router = useRouter();
-  !currentUser && redirect("/sign-in");
-  currentUser?.emailVerified && redirect("/");
+
+  useEffect(() => {
+    if (currentUser) {
+      currentUser.emailVerified && router.replace("/");
+    } else router.replace("/sign-in");
+  }, [currentUser]);
 
   const resendEmail = async () => {
     if (currentUser) {
       try {
-        const res = await sendVerificationLink(currentUser);
-        console.log(res);
         setError(null);
-        setMessage("Email verification sent!");
+        setMessage("Email verification resent!");
+        await sendVerificationLink(currentUser);
       } catch (e) {
         console.log(e);
         setMessage(null);
@@ -34,12 +36,13 @@ const VerifyAccount = () => {
   return (
     <section className="flex flex-col">
       {!currentUser || currentUser.emailVerified ? (
-        <div></div>
+        <></>
       ) : (
         <div>
           <div className=" flex flex-col">
             <h1 className="text-4xl pb-2">Verify Email</h1>
             {error && <p className="text-tiny text-red-700">{error}</p>}
+            {message && <p className="text-tiny ">{message}</p>}
           </div>
           <div className="flex flex-col pt-2">
             <p>On your email address was sent verification link.</p>

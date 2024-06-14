@@ -16,11 +16,17 @@ function SignIn() {
   const [error, setError] = useState<null | string>(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const router = useRouter();
+  useEffect(() => {
+    if (currentUser)
+      currentUser.emailVerified
+        ? router.replace("/")
+        : router.replace("/verify-account");
+  }, []);
 
   const handleSignInWithEmail = async () => {
     try {
       await signIn(email, password);
-      router.push("/");
+      router.back();
     } catch (e) {
       setPassword("");
       console.log(e);
@@ -30,7 +36,7 @@ function SignIn() {
   const handleContinueWithGoogle = async () => {
     try {
       await continueWithGoogle();
-      router.push("/");
+      router.back();
     } catch (error) {
       setError("Google authentication error.");
     }

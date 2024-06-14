@@ -1,40 +1,19 @@
-"use client";
 import { getPosts } from "@/api/posts/postController";
 import { useAuth } from "@/context/authContext";
 import React, { useEffect, useState } from "react";
 import { Post } from "@/api/posts/postController";
 import Link from "next/link";
+import PostLink from "@/components/postLink";
 
-const Home = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const { currentUser } = useAuth();
+const Home = async () => {
+  const posts = await getPosts();
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-  const fetchPosts = async () => {
-    const token = await currentUser?.getIdToken();
-    if (token) {
-      const response = await getPosts(token);
-      setPosts(response);
-    } else {
-      console.log("Missing Token");
-    }
-  };
   return (
     <section className="flex-col  flex w-full  max-xl:max-h-screen   max-xl:overflow-y-scroll">
       <div className="prose prose-blue max-w-none">HOME</div>
       <div className="flex flex-col gap-4">
         {posts.map((p) => {
-          return (
-            <Link
-              key={p._id}
-              href={"/posts/" + p._id}
-              className="flex bg-red-400"
-            >
-              {p.title}
-            </Link>
-          );
+          return <PostLink key={p._id} post={p} headerOnly />;
         })}
       </div>
     </section>

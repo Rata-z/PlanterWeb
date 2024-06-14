@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning={true} lang="en">
       <body className={` ${nunitoSans.variable} font-sans `}>
         <Providers>{children}</Providers>
       </body>

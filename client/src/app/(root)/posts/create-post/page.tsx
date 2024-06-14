@@ -34,7 +34,7 @@ function CreatePost() {
     if (!token) throw new Error("Missing token");
     const uid = await currentUser?.uid;
 
-    const response = await getPost(token, postId);
+    const response = await getPost(postId);
     if (!response) throw new Error("Fetching Error.");
     if (uid !== response.author)
       throw new Error("Unauthorized. User is not the author.");

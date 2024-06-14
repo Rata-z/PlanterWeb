@@ -20,7 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 connectFirebase();
 connectDB();
-app.use(middleware.decodeToken);
 // listUsers()
 //   .then((result) => {
 //     console.log(result.users);

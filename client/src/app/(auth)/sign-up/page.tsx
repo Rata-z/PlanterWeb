@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@nextui-org/button";
-import { auth } from "@/lib/firebase/config";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 import PasswordButton from "@/components/passwordButton";
 import { Input } from "@nextui-org/input";
-import Link from "next/link";
 import { FirebaseError } from "firebase/app";
 
 const SignUp = () => {
@@ -23,7 +21,7 @@ const SignUp = () => {
     useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const { signUp } = useAuth();
+  const { signUp, currentUser } = useAuth();
   const router = useRouter();
 
   const handleSignUpWithEmail = async () => {
@@ -86,6 +84,12 @@ const SignUp = () => {
       }
     }
   };
+  useEffect(() => {
+    if (currentUser)
+      currentUser.emailVerified
+        ? router.replace("/")
+        : router.replace("/verify-account");
+  }, []);
 
   return (
     <section className="flex flex-col">
@@ -148,9 +152,9 @@ const SignUp = () => {
         </Button>
       </div>
       <div className="flex flex-row pt-2 gap-1 text-sm justify-start">
-        <Link href={"/sign-in"} className="text-blue-600">
+        <Button size="sm" color="primary" onPress={() => router.back()}>
           Return
-        </Link>
+        </Button>
       </div>
     </section>
   );

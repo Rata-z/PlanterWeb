@@ -1,3 +1,4 @@
+import { Comment } from "./commentController";
 export interface Post {
   _id: string;
   title: string;
@@ -18,12 +19,10 @@ export function isErrorMessage(
   return (data as ErrorMessage).message !== undefined;
 }
 
-export const getPost = async (token: string, id: string) => {
+export const getPost = async (id: string) => {
   try {
     const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      next: { revalidate: 30 },
     });
     const data: Post | ErrorMessage = await response.json();
 
@@ -60,12 +59,10 @@ export const addPost = async (token: string, title: string, body: string) => {
     console.error(error);
   }
 };
-export const getPosts = async (token: string) => {
+export const getPosts = async () => {
   try {
     const response = await fetch("http://localhost:5000/api/posts", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      next: { revalidate: 30 },
     });
 
     const data: Post[] | ErrorMessage = await response.json();
@@ -75,6 +72,25 @@ export const getPosts = async (token: string) => {
       else throw new Error(`Fetching error: ${response.status}`);
     }
     if (!isErrorMessage(data)) return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+  return [];
+};
+export const getUserPosts = async (userID: string) => {
+  try {
+    const response = await fetch("http://localhost:5000/api/posts", {
+      next: { revalidate: 30 },
+    });
+
+    const data: Post[] | ErrorMessage = await response.json();
+    if (!response.ok) {
+      if (isErrorMessage(data))
+        throw new Error(`Fetching error: ${data.message}`);
+      else throw new Error(`Fetching error: ${response.status}`);
+    }
+    if (!isErrorMessage(data))
+      return data.filter((post: Post) => post.author === userID);
   } catch (error) {
     console.error("Error fetching data:", error);
   }

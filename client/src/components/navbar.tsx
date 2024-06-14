@@ -23,9 +23,13 @@ export default function Navbar() {
       </Link>
       <div className="flex  gap-16">
         <Link href={"/"}>HOME</Link>
-        <Link href={currentUser ? "/dashboard" : "/sing-in"}>DASHBOARD</Link>
+        <Link href={currentUser ? "/user/dashboard" : "/sign-in"}>
+          DASHBOARD
+        </Link>
         <Link href={"/settings"}>ABOUT</Link>
-        <Link href={"/posts/create-post"}>CREATE</Link>
+        <Link href={currentUser ? "/posts/create-post" : "/sign-in"}>
+          CREATE
+        </Link>
       </div>
       <div className="flex flex-row gap-3 p-4">
         <Switch
