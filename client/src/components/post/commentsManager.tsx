@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Comment,
   addComment,
@@ -20,6 +20,10 @@ function CommentsManager({
   const [editedCommentText, changeEditedCommentText] = useState<string>("");
   const [commentError, setCommentError] = useState<null | string>(null);
   const router = useRouter();
+  const sortedComments = useMemo(
+    () => [...post.comments].reverse(),
+    [post.comments]
+  );
 
   const { currentUser } = useAuth();
   const handleAddComment = async () => {
@@ -32,6 +36,7 @@ function CommentsManager({
         if (!token) throw new Error("Missing token");
         const updatedPost = await addComment(token, post._id, newCommentText);
         changeNewCommentText("");
+        if (updatedPost) post.comments = updatedPost.comments;
       }
     }
   };
@@ -47,8 +52,8 @@ function CommentsManager({
     const token = await currentUser?.getIdToken();
     if (!token) throw new Error("Missing token");
     const updatedPost = await deleteComment(token, post._id, commentID);
-    changeEditedCommentID(null);
-    changeEditedCommentText("");
+    handleCancelEditComment();
+    if (updatedPost) post.comments = updatedPost.comments;
   };
   const handleAcceptEditComment = async (commentID: string) => {
     const token = await currentUser?.getIdToken();
@@ -60,12 +65,13 @@ function CommentsManager({
       editedCommentText
     );
     handleCancelEditComment();
+    if (updatedPost) post.comments = updatedPost.comments;
   };
 
   return (
-    <>
-      <div className="flex flex-col">
-        Comment Section
+    <div className="flex flex-col">
+      Comment Section
+      <div className="flex ">
         <Input
           type="text"
           label="Write comment"
@@ -78,51 +84,55 @@ function CommentsManager({
         />
         <Button onPress={handleAddComment}>Add</Button>
       </div>
-
-      {post.comments.map((com: Comment) => {
-        return (
-          <div key={com._id} className="flex">
-            {editedCommentID !== com._id ? (
-              <div>
-                {com.body} {com.author} {com.updated && com.updated.toString()}
-                {currentUser && com.author === currentUser.uid && (
-                  <Button onPress={() => handleEditComment(com._id, com.body)}>
-                    Edit
+      <div className="flex flex-col">
+        {sortedComments.map((com: Comment) => {
+          return (
+            <div key={com._id} className="flex">
+              {editedCommentID !== com._id ? (
+                <div>
+                  {com.body} {com.author}{" "}
+                  {com.updated && com.updated.toString()}
+                  {currentUser && com.author === currentUser.uid && (
+                    <Button
+                      onPress={() => handleEditComment(com._id, com.body)}
+                    >
+                      Edit
+                    </Button>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  <Input
+                    type="text"
+                    label="Edit comment"
+                    value={editedCommentText}
+                    onChange={(text) =>
+                      changeEditedCommentText(text.target.value)
+                    }
+                    className=" w-80 border-gray-400 "
+                    errorMessage={commentError}
+                    isInvalid={!commentError ? false : true}
+                    variant="bordered"
+                  />
+                  <Button onPress={() => handleAcceptEditComment(com._id)}>
+                    Accept
                   </Button>
-                )}
-              </div>
-            ) : (
-              <div>
-                <Input
-                  type="text"
-                  label="Edit comment"
-                  value={editedCommentText}
-                  onChange={(text) =>
-                    changeEditedCommentText(text.target.value)
-                  }
-                  className=" w-80 border-gray-400 "
-                  errorMessage={commentError}
-                  isInvalid={!commentError ? false : true}
-                  variant="bordered"
-                />
-                <Button onPress={() => handleAcceptEditComment(com._id)}>
-                  Accept
-                </Button>
-                <Button onPress={() => handleCancelEditComment()}>
-                  Cancel
-                </Button>
-                <Button
-                  color="danger"
-                  onPress={() => handleDeleteComment(com._id)}
-                >
-                  Delete
-                </Button>
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </>
+                  <Button onPress={() => handleCancelEditComment()}>
+                    Cancel
+                  </Button>
+                  <Button
+                    color="danger"
+                    onPress={() => handleDeleteComment(com._id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
