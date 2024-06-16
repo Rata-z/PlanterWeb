@@ -13,12 +13,6 @@ const VerifyAccount = () => {
   const { currentUser, sendVerificationLink } = useAuth();
   const router = useRouter();
 
-  useEffect(() => {
-    if (currentUser) {
-      currentUser.emailVerified && router.replace("/");
-    } else router.replace("/sign-in");
-  }, [currentUser]);
-
   const resendEmail = async () => {
     if (currentUser) {
       try {

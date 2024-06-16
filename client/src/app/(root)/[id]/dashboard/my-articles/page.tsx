@@ -10,12 +10,10 @@ function MyArticles() {
   const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
   useEffect(() => {
-    if (!currentUser || !currentUser.emailVerified) router.replace("/sign-in");
     fetchPosts();
   }, []);
   async function fetchPosts() {
     if (!currentUser?.uid) return;
-    console.log(currentUser.uid);
 
     const fetched = await getUserPosts(currentUser.uid);
     setPosts(fetched);

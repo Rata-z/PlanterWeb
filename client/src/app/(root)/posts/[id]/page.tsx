@@ -1,5 +1,5 @@
 import React from "react";
-import { getPost, Post } from "@/api/posts/postController";
+import { getPost } from "@/api/posts/postController";
 
 import PostDetailsRenderer from "@/components/post/postDetailsRenderer";
 export const fetchCache = "force-no-store";

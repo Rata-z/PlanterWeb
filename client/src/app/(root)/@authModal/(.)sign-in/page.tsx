@@ -4,11 +4,9 @@ import SignInForm from "@/components/auth/signInForm";
 
 function SignInModal() {
   return (
-    <div className="w-80">
-      <ModalWrapper>
-        <SignInForm />
-      </ModalWrapper>
-    </div>
+    <ModalWrapper>
+      <SignInForm />
+    </ModalWrapper>
   );
 }
 
