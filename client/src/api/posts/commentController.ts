@@ -78,14 +78,17 @@ export const addComment = async (
   comment: string
 ) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/posts/${id}/`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ body: comment }),
-    });
+    const response = await fetch(
+      `http://localhost:5000/api/posts/${id}/comments`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ body: comment }),
+      }
+    );
 
     const data: Post | ErrorMessage = await response.json();
 

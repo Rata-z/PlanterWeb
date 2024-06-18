@@ -63,7 +63,11 @@ function PasswordReset() {
         </Button>
       </div>
       <div className="flex flex-row pt-2 gap-1 text-sm justify-start">
-        <Link href={"/sign-in"} replace className="text-blue-600">
+        <Link
+          href={"/sign-in"}
+          className="text-blue-600"
+          onClick={() => location.replace("/sign-in")}
+        >
           {"Return"}
         </Link>
       </div>

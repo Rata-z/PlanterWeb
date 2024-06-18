@@ -12,5 +12,5 @@ export default function verificationTemplate({
 
   if (!currentUser) location.replace("/sign-in");
   else if (currentUser.emailVerified) router.replace("/");
-  else return { children };
+  else return <>{children}</>;
 }

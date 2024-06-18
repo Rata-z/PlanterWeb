@@ -9,18 +9,38 @@ import {
   editComment,
   deleteComment,
   deletePost,
+  togglePostLike,
 } from "../controllers/postController.js";
 import middleware from "../middleware/index.js";
+import {
+  addCommentLimiter,
+  addPostLimiter,
+  deleteCommentLimiter,
+  deletePostLimiter,
+  editCommentLimiter,
+  editPostLimiter,
+  getPostLimiter,
+  getPostsLimiter,
+  likeLimiter,
+} from "../middleware/limiters.js";
 
 const router = express.Router();
 const auth = middleware.decodeToken;
 
-router.route("/").get(getPosts).post(auth, addPost);
-router.route("/:id").get(getPost).put(auth, editPost).delete(auth, deletePost);
-router.route("/:id/").post(auth, addComment);
+router
+  .route("/")
+  .get(getPostsLimiter, getPosts)
+  .post(auth, addPostLimiter, addPost);
+router
+  .route("/:id")
+  .get(getPostLimiter, getPost)
+  .put(auth, editPostLimiter, editPost)
+  .delete(auth, deletePostLimiter, deletePost);
+router.route("/:id/comments").post(auth, addCommentLimiter, addComment);
+router.route("/:id/likes").put(auth, likeLimiter, togglePostLike);
 router
   .route("/:id/:commentID")
-  .put(auth, editComment)
-  .delete(auth, deleteComment);
+  .put(auth, editCommentLimiter, editComment)
+  .delete(auth, deleteCommentLimiter, deleteComment);
 
 export default router;

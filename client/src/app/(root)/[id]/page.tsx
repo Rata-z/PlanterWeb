@@ -2,7 +2,7 @@ import { Post, getUserPosts } from "@/api/posts/postController";
 import React from "react";
 import PostLink from "@/components/post/postLink";
 
-async function Dashboard({ params }: { params: { id: string } }) {
+async function UserPosts({ params }: { params: { id: string } }) {
   const posts = await getUserPosts(params.id);
 
   return (
@@ -16,4 +16,4 @@ async function Dashboard({ params }: { params: { id: string } }) {
   );
 }
 
-export default Dashboard;
+export default UserPosts;

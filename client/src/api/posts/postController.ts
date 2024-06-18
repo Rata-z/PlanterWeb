@@ -7,6 +7,7 @@ export interface Post {
   date: Date;
   updated?: Date;
   comments: Comment[];
+  likes: string[];
 }
 
 export interface ErrorMessage {
@@ -22,7 +23,7 @@ export function isErrorMessage(
 export const getPost = async (id: string) => {
   try {
     const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
-      next: { revalidate: 30 },
+      next: { revalidate: 15 },
     });
     const data: Post | ErrorMessage = await response.json();
 
@@ -46,6 +47,7 @@ export const addPost = async (token: string, title: string, body: string) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, body }),
+      next: { revalidate: 30 },
     });
     const data: Post | ErrorMessage = await response.json();
     if (!response.ok) {
@@ -59,6 +61,35 @@ export const addPost = async (token: string, title: string, body: string) => {
     console.error(error);
   }
 };
+
+export const togglePostLike = async (token: string, id: string) => {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/api/posts/${id}/likes`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        next: { revalidate: 15 },
+      }
+    );
+
+    const data: Post | ErrorMessage = await response.json();
+
+    if (!response.ok) {
+      if (isErrorMessage(data))
+        throw new Error(`Action error: ${data.message}`);
+      else throw new Error(`Action error: ${response.status}`);
+    }
+    if (!isErrorMessage(data)) return data;
+  } catch (error) {
+    console.error(error);
+  }
+  return null;
+};
+
 export const getPosts = async () => {
   try {
     const response = await fetch("http://localhost:5000/api/posts", {
@@ -111,6 +142,7 @@ export const editPost = async (
           "Content-Type": "application/json",
         },
         body: JSON.stringify(post),
+        next: { revalidate: 30 },
       }
     );
 

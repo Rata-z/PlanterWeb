@@ -10,7 +10,7 @@ export default function dashboardTemplate({
   const { currentUser } = useAuth();
   const router = useRouter();
 
-  if (!currentUser) location.assign("/sign-in");
-  else if (!currentUser.emailVerified) router.push("/verify-account");
-  else return { children };
+  if (!currentUser) location.replace("/sign-in");
+  else if (!currentUser.emailVerified) router.replace("/verify-account");
+  else return <>{children}</>;
 }

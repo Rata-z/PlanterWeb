@@ -37,6 +37,10 @@ const PostSchema = new Schema({
     type: Array,
     default: [],
   },
+  likes: {
+    type: [String],
+    default: [],
+  },
   date: {
     type: Date,
     default: Date.now,

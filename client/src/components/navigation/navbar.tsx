@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import logoIcon from "../assets/icons/logo.svg";
+import logoIcon from "@/assets/icons/logo.svg";
 import Image from "next/image";
 import { useAuth } from "@/context/authContext";
 import { Button } from "@nextui-org/button";
@@ -23,9 +23,16 @@ export default function Navbar() {
       </Link>
       <div className="flex  gap-16">
         <Link href={"/"}>HOME</Link>
-        <Link href={"/user/dashboard"}>DASHBOARD</Link>
+        <Link href={currentUser ? `/${currentUser.uid}/dashboard` : "/"}>
+          DASHBOARD
+        </Link>
         <Link href={"/settings"}>ABOUT</Link>
-        <Link href={"/posts/create-post"}>CREATE</Link>
+        <Link
+          href={"/posts/create-post"}
+          onClick={() => location.assign("/posts/create-post")}
+        >
+          CREATE
+        </Link>
       </div>
       <div className="flex flex-row gap-3 p-4">
         <Switch

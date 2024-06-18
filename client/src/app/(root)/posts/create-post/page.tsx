@@ -50,16 +50,18 @@ function CreatePost() {
     const token = await currentUser?.getIdToken(true);
 
     if (!token) throw new Error("Missing Token");
-    await addPost(token, title, body);
+    const newPostId = await addPost(token, title, body);
 
-    router.replace("/posts/" + postId);
+    if (!newPostId)
+      throw new Error("Action Error: Unable to navigate to created post");
+    else location.replace(`/posts/${newPostId}`);
   };
   const handleDelete = async () => {
     if (!postId) throw new Error("Missing post ID");
     const token = await currentUser?.getIdToken();
     if (!token) throw new Error("Missing Token");
     await deletePost(token, postId);
-    router.replace("/");
+    location.replace("/");
   };
 
   const handleConfirmEdit = async () => {
@@ -68,7 +70,7 @@ function CreatePost() {
     if (!token) throw new Error("Missing Token");
     const updatedPost = { title, body, _id: postId };
     await editPost(token, updatedPost);
-    router.replace("/posts/" + postId);
+    location.replace("/posts/" + postId);
   };
   return (
     <section className="flex w-screen ">

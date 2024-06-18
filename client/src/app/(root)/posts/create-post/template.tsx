@@ -10,7 +10,7 @@ export default function verificationTemplate({
   const { currentUser } = useAuth();
   const router = useRouter();
 
-  if (!currentUser) router.push("/sign-in");
+  if (!currentUser) location.assign("/sign-in");
   else if (!currentUser.emailVerified) router.push("/verify-account");
-  else return { children };
+  else return <>{children}</>;
 }

@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from "@/context/authContext";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function authenticationTemplate({
   children,
@@ -12,6 +12,6 @@ export default function authenticationTemplate({
 
   if (currentUser && !currentUser.emailVerified)
     router.replace("/verify-account");
-  else if (currentUser && currentUser.emailVerified) router.replace("/");
-  else return { children };
+  else if (currentUser && currentUser.emailVerified) router.back();
+  else return <>{children}</>;
 }

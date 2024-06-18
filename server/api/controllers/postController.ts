@@ -85,6 +85,7 @@ export const addPost = async (req, res) => {
 };
 
 export const getPosts = async (req, res) => {
+  console.log("got posts ");
   try {
     const posts = await Post.find();
     if (!posts) {
@@ -199,5 +200,30 @@ export const deleteComment = async (req, res) => {
     res
       .status(500)
       .json({ message: "Failed to edit comment: Internal error." });
+  }
+};
+
+export const togglePostLike = async (req, res) => {
+  const uid = req.user.uid;
+  const id = req.params.id;
+  console.log("liked lol");
+
+  try {
+    const post = await Post.findById(id);
+
+    if (!post)
+      return res
+        .status(404)
+        .json({ message: "Action failed: Post not found." });
+
+    const isLiked = post.likes.includes(uid);
+    if (isLiked) post.likes = post.likes.filter((user: string) => user !== uid);
+    else post.likes.push(uid);
+
+    await post.save();
+
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(500).json({ message: "Action failed: Internal error." });
   }
 };

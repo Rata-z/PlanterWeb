@@ -14,6 +14,7 @@ function PostManager({ post }: { post: Post }) {
             pathname: "/posts/create-post",
             query: { id: post._id },
           }}
+          onClick={() => location.assign(`/posts/create-post?id=${post._id}`)}
         >
           Edit
         </Link>

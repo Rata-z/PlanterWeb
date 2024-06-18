@@ -149,7 +149,11 @@ const SignUp = () => {
         {/* <Button size="sm" color="primary" onPress={() => router.back()}>
           Return
         </Button> */}
-        <Link href={"/sign-in"} replace className="text-blue-600">
+        <Link
+          href={"/sign-in"}
+          className="text-blue-600"
+          onClick={() => location.replace("/sign-in")}
+        >
           {"Return"}
         </Link>
       </div>
