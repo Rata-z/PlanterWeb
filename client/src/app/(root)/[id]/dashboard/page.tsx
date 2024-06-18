@@ -3,7 +3,7 @@ import { Post, getUserPosts } from "@/api/posts/postController";
 import { useAuth } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import PostLink from "@/components/post/postLink";
+import PostLink from "@/components/postComponents/postLink";
 
 function Dashboard() {
   const { currentUser } = useAuth();

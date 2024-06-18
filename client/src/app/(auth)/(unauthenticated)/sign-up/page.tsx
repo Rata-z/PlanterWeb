@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
-import PasswordButton from "@/components/auth/passwordButton";
+import PasswordButton from "@/components/authComponents/passwordButton";
 import { Input } from "@nextui-org/input";
 import { FirebaseError } from "firebase/app";
 import Link from "next/link";

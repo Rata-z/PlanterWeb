@@ -3,8 +3,8 @@ import { micromark } from "micromark";
 import { Post } from "@/api/posts/postController";
 
 import { gfm, gfmHtml } from "micromark-extension-gfm";
-import PostManager from "@/components/post/postManager";
-import CommentsManager from "@/components/post/commentsManager";
+import PostManager from "@/components/postComponents/postManager";
+import CommentsManager from "@/components/postComponents/commentsManager";
 import PostLikeButton from "./postLikeButton";
 
 function PostDetailsRenderer({ post }: { post: Post }) {

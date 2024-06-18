@@ -1,4 +1,4 @@
-import Navbar from "@/components/navigation/navbar";
+import { SiteHeader } from "@/components/siteHeader";
 
 export default function RootLayout({
   children,
@@ -10,13 +10,15 @@ export default function RootLayout({
   postModal: React.ReactNode;
 }>) {
   return (
-    <main className="flex flex-row">
-      <div className="flex-col  flex-1">
-        {authModal}
-        <Navbar />
-        {postModal}
-        {children}
-      </div>
-    </main>
+    <>
+      <SiteHeader />
+      <main className="flex-1">
+        <div className="flex-col  flex-1">
+          {authModal}
+          {postModal}
+          {children}
+        </div>
+      </main>
+    </>
   );
 }

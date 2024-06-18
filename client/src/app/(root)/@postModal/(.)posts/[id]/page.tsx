@@ -1,7 +1,7 @@
 "use client";
 import { Post, getPost } from "@/api/posts/postController";
 import ModalWrapper from "@/components/modalWrapper";
-import PostDetailsRenderer from "@/components/post/postDetailsRenderer";
+import PostDetailsRenderer from "@/components/postComponents/postDetailsRenderer";
 import React, { useEffect, useState } from "react";
 
 function PostDetailsModal({ params: { id } }: { params: { id: string } }) {

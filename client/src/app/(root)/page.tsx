@@ -3,7 +3,7 @@ import { useAuth } from "@/context/authContext";
 import React, { useEffect, useState } from "react";
 import { Post } from "@/api/posts/postController";
 import Link from "next/link";
-import PostLink from "@/components/post/postLink";
+import PostLink from "@/components/postComponents/postLink";
 
 const Home = async () => {
   const posts = await getPosts();

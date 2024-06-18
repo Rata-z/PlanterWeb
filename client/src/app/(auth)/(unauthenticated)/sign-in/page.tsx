@@ -1,6 +1,6 @@
 import React from "react";
 
-import SignInForm from "@/components/auth/signInForm";
+import SignInForm from "@/components/authComponents/signInForm";
 
 function SignIn() {
   return (

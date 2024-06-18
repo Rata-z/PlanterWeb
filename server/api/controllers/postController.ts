@@ -85,7 +85,6 @@ export const addPost = async (req, res) => {
 };
 
 export const getPosts = async (req, res) => {
-  console.log("got posts ");
   try {
     const posts = await Post.find();
     if (!posts) {

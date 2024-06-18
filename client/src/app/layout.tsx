@@ -1,7 +1,9 @@
 import "./globals.css";
 import { Inter, Nunito_Sans } from "next/font/google";
 import { Providers } from "../components/providers";
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+import { cn } from "@/lib/utils";
+import { SiteHeader } from "@/components/siteHeader";
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-nunito-sans",
@@ -22,8 +24,15 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning={true} lang="en">
-      <body className={` ${nunitoSans.variable} font-sans `}>
-        <Providers>{children}</Providers>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-nunitoSans antialiased",
+          nunitoSans.variable
+        )}
+      >
+        <Providers>
+          <div className="relative flex flex-col bg-background">{children}</div>
+        </Providers>
       </body>
     </html>
   );

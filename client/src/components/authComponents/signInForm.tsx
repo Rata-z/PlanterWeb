@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "@/context/authContext";
 import { IconContext } from "react-icons";
-import PasswordButton from "@/components/auth/passwordButton";
+import PasswordButton from "@/components/authComponents/passwordButton";
 import { Input } from "@nextui-org/input";
 import Link from "next/link";
 
@@ -43,8 +43,8 @@ function SignInForm() {
   };
   return (
     <section className="flex w-80 flex-col">
-      <div className=" flex flex-col">
-        <h1 className="text-4xl pb-2">Sign In</h1>
+      <div className="flex flex-col">
+        <h1 className="pb-2 text-4xl">Sign In</h1>
         {error && <p className="text-tiny text-red-700">{error}</p>}
         <div className="flex flex-col gap-4 pt-2">
           <Input
@@ -52,14 +52,14 @@ function SignInForm() {
             label="Email"
             value={email}
             onChange={(text) => setEmail(text.target.value)}
-            className=" border-gray-400 "
+            className="border-gray-400"
             variant="bordered"
           />
           <Input
             type={isPasswordVisible ? "text" : "password"}
             label="Password"
             value={password}
-            className=" border-gray-400 "
+            className="border-gray-400"
             variant="bordered"
             endContent={
               <PasswordButton
@@ -71,13 +71,13 @@ function SignInForm() {
           />
         </div>
       </div>
-      <div className="pt-1.5  flex justify-end">
-        <Link href={"/password-reset"} className=" text-tiny text-blue-600">
+      <div className="flex justify-end pt-1.5">
+        <Link href={"/password-reset"} className="text-tiny text-blue-600">
           Forgot Password
         </Link>
       </div>
 
-      <div className="flex pt-2 flex-row justify-between">
+      <div className="flex flex-row justify-between pt-2">
         <IconContext.Provider value={{ size: "1.5em" }}>
           <Button
             color="primary"
@@ -95,7 +95,7 @@ function SignInForm() {
           Sign In
         </Button>
       </div>
-      <div className="flex flex-row pt-2 gap-1 text-sm justify-center">
+      <div className="flex flex-row justify-center gap-1 pt-2 text-sm">
         {"dont have account?"}
         <Link href={"/sign-up"} className="text-blue-600">
           Sign up

@@ -1,6 +1,6 @@
 import { Post, getUserPosts } from "@/api/posts/postController";
 import React from "react";
-import PostLink from "@/components/post/postLink";
+import PostLink from "@/components/postComponents/postLink";
 
 async function UserPosts({ params }: { params: { id: string } }) {
   const posts = await getUserPosts(params.id);

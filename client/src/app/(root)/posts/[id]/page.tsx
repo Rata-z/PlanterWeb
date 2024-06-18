@@ -1,7 +1,7 @@
 import React from "react";
 import { getPost } from "@/api/posts/postController";
 
-import PostDetailsRenderer from "@/components/post/postDetailsRenderer";
+import PostDetailsRenderer from "@/components/postComponents/postDetailsRenderer";
 export const fetchCache = "force-no-store";
 
 async function PostDetails({ params }: { params: { id: string } }) {
