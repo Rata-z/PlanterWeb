@@ -14,7 +14,15 @@ async function PostDetails({ params }: { params: { id: string } }) {
   };
   const post = await fetchPost();
 
-  return post ? <PostDetailsRenderer post={post} /> : <></>;
+  return (
+    <section className="flex flex-col items-center">
+      {post && (
+        <div className="flex w-[65%] max-w-screen-xl flex-col items-center">
+          <PostDetailsRenderer post={post} />
+        </div>
+      )}
+    </section>
+  );
 }
 
 export default PostDetails;

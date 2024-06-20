@@ -205,7 +205,6 @@ export const deleteComment = async (req, res) => {
 export const togglePostLike = async (req, res) => {
   const uid = req.user.uid;
   const id = req.params.id;
-  console.log("liked lol");
 
   try {
     const post = await Post.findById(id);

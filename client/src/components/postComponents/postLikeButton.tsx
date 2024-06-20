@@ -41,6 +41,7 @@ function PostLikeButton({ post }: { post: { _id: string; likes: string[] } }) {
         color="danger"
         onPress={handleLikePress}
         aria-label="Like"
+        size="sm"
       >
         {isLiked ? <IoHeart /> : <IoHeartOutline />}
       </Button>

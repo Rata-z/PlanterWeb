@@ -19,7 +19,10 @@ function MobileNavbar() {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex" side="right">
+      <SheetContent
+        className="flex w-5/12 flex-col justify-between"
+        side="right"
+      >
         <div className="mt-3 flex flex-col gap-3">
           <MobileLink
             onOpenChange={setIsOpened}
@@ -50,7 +53,7 @@ function MobileNavbar() {
             CREATE
           </MobileLink>
         </div>
-        <div className="flex self-end">
+        <div className="flex">
           <ThemeSwitch className="" />
         </div>
       </SheetContent>

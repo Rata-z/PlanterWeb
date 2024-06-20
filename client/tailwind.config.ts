@@ -22,7 +22,7 @@ const config = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
+        border: "hsl(var(--border),0.4)",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -77,6 +77,9 @@ const config = {
       },
       fontFamily: {
         nunitoSans: ["var(--font-nunito-sans)", ...fontFamily.sans],
+      },
+      lineClamp: {
+        10: "10",
       },
     },
   },

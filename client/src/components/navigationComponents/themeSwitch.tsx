@@ -10,7 +10,7 @@ function ThemeSwitch({ className }: { className: string }) {
   };
   return (
     <Switch
-      size="md"
+      size="sm"
       color="default"
       defaultSelected={resolvedTheme === "dark" ? true : false}
       startContent={<IoMoon />}

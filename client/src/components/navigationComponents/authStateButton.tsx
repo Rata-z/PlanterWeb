@@ -9,10 +9,10 @@ interface AuthStateProps {
 
 function AuthStateButton({ props }: { props: AuthStateProps }) {
   return (
-    <div className="hidden sm:inline-block">
+    <div className="hidden text-nowrap sm:inline-block">
       {props.currentUser ? (
         <Button size="sm" onPress={props.signOut}>
-          Log Out
+          LOG OUT
         </Button>
       ) : (
         <Link href={"/sign-in"}>SIGN IN</Link>

@@ -73,16 +73,16 @@ function CreatePost() {
     location.replace("/posts/" + postId);
   };
   return (
-    <section className="flex w-screen ">
-      <div className="flex flex-col w-screen">
-        <div className="flex flex-row w-screen justify-between items-center">
+    <section className="flex w-full justify-center">
+      <div className="flex h-full w-full max-w-screen-xl flex-col px-4">
+        <div className="flex w-full flex-row items-center justify-between">
           <Input
             isRequired
             type="text"
             label="Title"
             value={title}
             onChange={(text) => setTitle(text.target.value)}
-            className=" w-80 border-gray-400 "
+            className="z-0 w-80 border-gray-400"
             errorMessage={titleError}
             isInvalid={!titleError ? false : true}
             variant="bordered"
@@ -109,6 +109,7 @@ function CreatePost() {
           toolbarsExclude={["save", "github"]}
           theme={resolvedTheme === "dark" ? "dark" : "light"}
           language="en-US"
+          className="rounded-md"
         />
       </div>
     </section>

@@ -1,4 +1,5 @@
-import { SiteHeader } from "@/components/siteHeader";
+import SiteFooter from "@/components/navigationComponents/siteFooter";
+import { SiteHeader } from "@/components/navigationComponents/siteHeader";
 
 export default function RootLayout({
   children,
@@ -13,12 +14,13 @@ export default function RootLayout({
     <>
       <SiteHeader />
       <main className="flex-1">
-        <div className="flex-col  flex-1">
+        <div className="flex-1 flex-col">
           {authModal}
           {postModal}
           {children}
         </div>
       </main>
+      <SiteFooter />
     </>
   );
 }

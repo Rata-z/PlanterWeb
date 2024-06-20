@@ -13,6 +13,7 @@ function ModalWrapper({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   const onDismiss = useCallback(() => {
+    document.body.classList.remove("overflow-hidden");
     router.back();
   }, [router]);
 
@@ -22,38 +23,34 @@ function ModalWrapper({ children }: { children: React.ReactNode }) {
         if (onDismiss) onDismiss();
       }
     },
-    [onDismiss, overlay, wrapper]
+    [onDismiss, overlay, wrapper],
   );
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onDismiss();
     },
-    [onDismiss]
+    [onDismiss],
   );
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
+    document.body.classList.add("overflow-hidden");
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
 
   return (
     <div
       ref={overlay}
-      className="fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto bg-black/60 p-10"
+      className="fixed bottom-0 left-0 right-0 top-0 z-10 mx-auto flex max-h-screen justify-center bg-black/60"
       onClick={onClick}
     >
-      {/* <div
-        ref={wrapper}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:w-10/12 md:w-8/12 lg:w-2/5 p-6"
-      > */}
       <div
         ref={wrapper}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex rounded-2xl p-4 border-pink-300 border-2  bg-slate-100"
+        className="absolute top-[5%] flex max-h-[90%] max-w-screen-2xl justify-center"
       >
         {children}
       </div>
-      {/* </div> */}
     </div>
   );
 }

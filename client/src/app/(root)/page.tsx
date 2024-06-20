@@ -1,19 +1,15 @@
 import { getPosts } from "@/api/posts/postController";
-import { useAuth } from "@/context/authContext";
-import React, { useEffect, useState } from "react";
-import { Post } from "@/api/posts/postController";
-import Link from "next/link";
-import PostLink from "@/components/postComponents/postLink";
+import React from "react";
+import PostCard from "@/components/postComponents/postCard";
 
 const Home = async () => {
   const posts = await getPosts();
 
   return (
-    <section className="flex-col  flex w-full  max-xl:max-h-screen   max-xl:overflow-y-scroll">
-      <div className="prose prose-blue max-w-none">HOME</div>
-      <div className="flex flex-col gap-4">
-        {posts.map((p) => {
-          return <PostLink key={p._id} post={p} headerOnly />;
+    <section className="flex w-full flex-col max-xl:max-h-screen max-xl:overflow-y-scroll">
+      <div className="flex flex-col items-center gap-8">
+        {posts.toReversed().map((p) => {
+          return <PostCard key={p._id} post={p} />;
         })}
       </div>
     </section>

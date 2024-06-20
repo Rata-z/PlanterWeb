@@ -2,10 +2,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useAuth } from "@/context/authContext";
-import { Button } from "@nextui-org/button";
-import { Switch } from "@nextui-org/switch";
-import { useTheme } from "next-themes";
-import { IoSunny, IoMoon } from "react-icons/io5";
 import { usePathname, useRouter } from "next/navigation";
 import { Icons } from "../icons";
 import { cn } from "@/lib/utils";
@@ -18,11 +14,17 @@ export default function MainNavbar() {
 
   const pathname = usePathname();
   return (
-    <div className="flex w-screen border-b-2 border-foreground">
+    <div className="flex w-screen">
       <nav className={"flex w-full items-center justify-between"}>
-        <Link href={"/"}>
-          <Icons.logo className="h-11 w-9" />
-        </Link>
+        <div className="flex flex-row">
+          <Link href={"/"}>
+            <Icons.logo className="h-11 w-9" />
+          </Link>
+          <ThemeSwitch
+            className={"absolute ml-11 hidden self-end sm:inline-block"}
+          />
+        </div>
+
         <div className="flex items-center justify-center gap-16">
           <Link
             href={"/"}
@@ -71,7 +73,6 @@ export default function MainNavbar() {
           </Link>
         </div>
         <div className="flex flex-row items-center">
-          <ThemeSwitch className={"hidden sm:inline-block"} />
           <AuthStateButton props={{ currentUser, signOut }} />
         </div>
         <MobileNavbar />
