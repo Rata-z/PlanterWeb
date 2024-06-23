@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import MobileNavbar from "./mobileNavbar";
 import AuthStateButton from "./authStateButton";
 import ThemeSwitch from "./themeSwitch";
+import NavigationButton from "./navigationButton";
 
 export default function MainNavbar() {
   const { currentUser, signOut } = useAuth();
@@ -16,61 +17,37 @@ export default function MainNavbar() {
   return (
     <div className="flex w-screen">
       <nav className={"flex w-full items-center justify-between"}>
-        <div className="flex flex-row">
+        <div className="flex flex-row items-center sm:gap-3">
           <Link href={"/"}>
-            <Icons.logo className="h-11 w-9" />
+            <Icons.logo className="size-11" />
           </Link>
-          <ThemeSwitch
-            className={"absolute ml-11 hidden self-end sm:inline-block"}
-          />
+          <ThemeSwitch className={"hidden sm:inline-block sm:pt-2"} />
         </div>
 
-        <div className="flex items-center justify-center gap-16">
-          <Link
+        <div className="flex items-center justify-center gap-16 pr-[6.5%]">
+          <NavigationButton
+            currentPathName={pathname}
+            text="BLOGS"
             href={"/"}
-            className={cn(
-              "hidden text-sm font-bold transition-opacity hover:opacity-100 sm:inline-block",
-              pathname === "/"
-                ? "text-foreground"
-                : "text-foreground opacity-60",
-            )}
-          >
-            BLOGS
-          </Link>
-          <Link
-            href={currentUser ? `/${currentUser.uid}/dashboard` : "/"}
-            className={cn(
-              "hidden text-sm font-bold transition-opacity hover:opacity-100 sm:inline-block",
-              pathname === `/${currentUser?.uid}/dashboard`
-                ? "text-foreground"
-                : "text-foreground opacity-60",
-            )}
-          >
-            DASHBOARD
-          </Link>
-          <Link
-            href={"/settings"}
-            className={cn(
-              "hidden text-sm font-bold transition-opacity hover:opacity-100 sm:inline-block",
-              pathname === "/about"
-                ? "text-foreground"
-                : "text-foreground opacity-60",
-            )}
-          >
-            ABOUT
-          </Link>
-          <Link
-            href={"/posts/create-post"}
-            className={cn(
-              "hidden text-sm font-bold transition-opacity hover:opacity-100 sm:inline-block",
-              pathname === "/posts/create-post"
-                ? "text-foreground"
-                : "text-foreground opacity-60",
-            )}
-            onClick={() => location.assign("/posts/create-post")}
-          >
-            CREATE
-          </Link>
+          />
+          <NavigationButton
+            currentPathName={pathname}
+            text="DASHBOARD"
+            uid={currentUser?.uid}
+            href={currentUser ? `/${currentUser.uid}` : "/sign-in"}
+          />
+
+          <NavigationButton
+            currentPathName={pathname}
+            text="ABOUT"
+            href={"/about"}
+          />
+          <NavigationButton
+            currentPathName={pathname}
+            text="CREATE"
+            href={currentUser ? "/posts/create-post" : "/sign-in"}
+            clickNavigation={true}
+          />
         </div>
         <div className="flex flex-row items-center">
           <AuthStateButton props={{ currentUser, signOut }} />

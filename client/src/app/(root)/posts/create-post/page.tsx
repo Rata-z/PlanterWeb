@@ -6,6 +6,7 @@ import "md-editor-rt/lib/style.css";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Emoji } from "@vavt/rt-extension";
 import { useAuth } from "@/context/authContext";
 import {
   addPost,
@@ -106,10 +107,11 @@ function CreatePost() {
         <MdEditor
           modelValue={body}
           onChange={setBody}
-          toolbarsExclude={["save", "github"]}
+          defToolbars={[<Emoji key="emoji-extension" />]}
+          toolbarsExclude={["save", "github", "katex", "htmlPreview", "image"]}
           theme={resolvedTheme === "dark" ? "dark" : "light"}
           language="en-US"
-          className="rounded-md"
+          className="s-full rounded-md text-foreground shadow-2xl"
         />
       </div>
     </section>

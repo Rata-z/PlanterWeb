@@ -2,12 +2,11 @@ import "./globals.css";
 import { Inter, Nunito_Sans } from "next/font/google";
 import { Providers } from "../components/providers";
 import { cn } from "@/lib/utils";
-import { SiteHeader } from "@/components/siteHeader";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-nunito-sans",
-  weight: ["400"],
+  weight: ["400", "500", "700"],
   adjustFontFallback: false,
 });
 
@@ -27,7 +26,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-nunitoSans antialiased",
-          nunitoSans.variable
+          nunitoSans.variable,
         )}
       >
         <Providers>

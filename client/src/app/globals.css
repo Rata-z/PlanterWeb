@@ -2,13 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+.scrollbar-rounded::-webkit-scrollbar {
+  width: 10px;
+}
+.scrollbar-rounded::-webkit-scrollbar-track {
+  margin-top: 0.45em;
+  margin-bottom: 0.45em;
+  border-radius: 15px;
+}
+.scrollbar-rounded::-webkit-scrollbar-thumb {
+  background: hsl(var(--foreground), 60%);
+  border-radius: 5px;
+}
+.scrollbar-rounded::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground), 100%);
+}
+
 @layer base {
   :root {
-    --background: 75, 18%, 87%;
+    --background: 0, 0%, 95%;
     --foreground: 159, 27%, 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 109, 26%, 41%;
+    --card-foreground: 0, 0%, 100%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
@@ -25,11 +41,11 @@
     --accent: 0, 0%, 96%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 176, 61%, 19%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 159, 27%, 15%;
-    --input: 214.3 31.8% 91.4%;
+    --input: 214.3 60% 91.4%;
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
@@ -39,7 +55,7 @@
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 109, 26%, 28%;
     --card-foreground: 210 40% 98%;
 
     --popover: 222.2 84% 4.9%;
@@ -57,7 +73,7 @@
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 176, 61%, 19%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;

@@ -52,14 +52,26 @@ function SignInForm() {
             label="Email"
             value={email}
             onChange={(text) => setEmail(text.target.value)}
-            className="border-gray-400"
+            classNames={{
+              label: "text-foreground",
+              input: "text-foreground",
+              errorMessage: "absolute",
+              inputWrapper:
+                "border-border dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+            }}
             variant="bordered"
           />
           <Input
             type={isPasswordVisible ? "text" : "password"}
             label="Password"
             value={password}
-            className="border-gray-400"
+            classNames={{
+              label: "text-foreground",
+              input: "text-foreground",
+              errorMessage: "absolute",
+              inputWrapper:
+                "border-border dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+            }}
             variant="bordered"
             endContent={
               <PasswordButton
@@ -72,15 +84,19 @@ function SignInForm() {
         </div>
       </div>
       <div className="flex justify-end pt-1.5">
-        <Link href={"/password-reset"} className="text-tiny text-blue-600">
+        <Link
+          href={"/password-reset"}
+          className="text-tiny text-blue-600 dark:text-blue-500"
+        >
           Forgot Password
         </Link>
       </div>
 
-      <div className="flex flex-row justify-between pt-2">
+      <div className="flex flex-row items-center justify-between pt-2">
         <IconContext.Provider value={{ size: "1.5em" }}>
           <Button
             color="primary"
+            className="rounded-bl-md rounded-br-3xl rounded-tl-3xl rounded-tr-md border-2.5 border-green-950 border-opacity-85"
             startContent={<FcGoogle />}
             onPress={handleContinueWithGoogle}
           >
@@ -90,14 +106,14 @@ function SignInForm() {
         <Button
           radius="full"
           onPress={handleSignInWithEmail}
-          className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+          className="rounded-bl-3xl rounded-br-lg rounded-tl-lg rounded-tr-3xl border-2.5 border-green-950 border-opacity-85 bg-gradient-to-tl from-orange-300 from-[-30%] to-pink-300 to-[130%] font-nunitoSans font-bold text-green-950 shadow-lg"
         >
           Sign In
         </Button>
       </div>
       <div className="flex flex-row justify-center gap-1 pt-2 text-sm">
         {"dont have account?"}
-        <Link href={"/sign-up"} className="text-blue-600">
+        <Link href={"/sign-up"} className="text-blue-600 dark:text-blue-500">
           Sign up
         </Link>
       </div>

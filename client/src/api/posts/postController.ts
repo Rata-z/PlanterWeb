@@ -8,6 +8,7 @@ export interface Post {
   updated?: Date;
   comments: Comment[];
   likes: string[];
+  image?: boolean;
 }
 
 export interface ErrorMessage {
@@ -15,7 +16,7 @@ export interface ErrorMessage {
 }
 
 export function isErrorMessage(
-  data: Post | ErrorMessage | Post[]
+  data: Post | ErrorMessage | Post[],
 ): data is ErrorMessage {
   return (data as ErrorMessage).message !== undefined;
 }
@@ -73,7 +74,7 @@ export const togglePostLike = async (token: string, id: string) => {
           "Content-Type": "application/json",
         },
         next: { revalidate: 15 },
-      }
+      },
     );
 
     const data: Post | ErrorMessage = await response.json();
@@ -130,7 +131,7 @@ export const getUserPosts = async (userID: string) => {
 
 export const editPost = async (
   token: string,
-  post: { _id: string; title: string; body: string }
+  post: { _id: string; title: string; body: string },
 ) => {
   try {
     const response = await fetch(
@@ -143,7 +144,7 @@ export const editPost = async (
         },
         body: JSON.stringify(post),
         next: { revalidate: 30 },
-      }
+      },
     );
 
     if (!response.ok) {

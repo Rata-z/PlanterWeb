@@ -5,7 +5,9 @@ import SignInForm from "@/components/authComponents/signInForm";
 function SignInModal() {
   return (
     <ModalWrapper>
-      <SignInForm />
+      <div className="absolute top-10 flex w-min flex-col rounded-2xl border-2 border-pink-300 bg-slate-100 p-4 dark:bg-card">
+        <SignInForm />
+      </div>
     </ModalWrapper>
   );
 }

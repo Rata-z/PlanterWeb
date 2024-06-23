@@ -7,9 +7,9 @@ async function UserPosts({ params }: { params: { id: string } }) {
 
   return (
     <section className="flex flex-col">
-      <div>
+      <div className="flex flex-col gap-5">
         {posts.map((post: Post) => {
-          return <PostLink key={post._id} post={post} headerOnly />;
+          return <PostLink key={post._id} post={post} />;
         })}
       </div>
     </section>

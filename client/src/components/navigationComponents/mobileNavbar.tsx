@@ -7,6 +7,7 @@ import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 import ThemeSwitch from "./themeSwitch";
+import MobileSideNav from "./dashboard/mobileSideNav";
 
 function MobileNavbar() {
   const [isOpened, setIsOpened] = useState(false);
@@ -38,6 +39,7 @@ function MobileNavbar() {
           >
             DASHBOARD
           </MobileLink>
+          {currentUser && <MobileSideNav />}
           <MobileLink
             onOpenChange={setIsOpened}
             href="/about"

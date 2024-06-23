@@ -47,7 +47,7 @@ function ModalWrapper({ children }: { children: React.ReactNode }) {
     >
       <div
         ref={wrapper}
-        className="absolute top-[5%] flex max-h-[90%] max-w-screen-2xl justify-center"
+        className="absolute top-[5%] flex max-h-[90%] w-screen justify-center"
       >
         {children}
       </div>

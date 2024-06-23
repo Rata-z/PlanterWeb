@@ -17,7 +17,7 @@ async function PostDetails({ params }: { params: { id: string } }) {
   return (
     <section className="flex flex-col items-center">
       {post && (
-        <div className="flex w-[65%] max-w-screen-xl flex-col items-center">
+        <div className="flex w-[85%] max-w-screen-xl flex-col sm:w-[62.5%]">
           <PostDetailsRenderer post={post} />
         </div>
       )}

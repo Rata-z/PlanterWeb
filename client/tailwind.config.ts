@@ -23,6 +23,7 @@ const config = {
     extend: {
       colors: {
         border: "hsl(var(--border),0.4)",
+        borderBold: "hsl(var(--border),0.8)",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -61,6 +62,9 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      borderWidth: {
+        "2.5": "2.5px",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -79,6 +83,7 @@ const config = {
         nunitoSans: ["var(--font-nunito-sans)", ...fontFamily.sans],
       },
       lineClamp: {
+        7: "7",
         10: "10",
       },
     },
@@ -86,6 +91,7 @@ const config = {
   plugins: [
     require("@tailwindcss/typography"),
     require("tailwindcss-animate"),
+    require("tailwind-scrollbar"),
     nextui(),
   ],
 } satisfies Config;

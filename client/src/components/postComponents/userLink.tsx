@@ -9,6 +9,7 @@ function UserLink({ author }: { author: string }) {
       onClick={() => {
         location.assign(`/${author}`);
       }}
+      className="font-medium text-foreground no-underline"
     >
       {author}
     </Link>

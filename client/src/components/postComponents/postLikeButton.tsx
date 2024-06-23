@@ -35,7 +35,7 @@ function PostLikeButton({ post }: { post: { _id: string; likes: string[] } }) {
   };
 
   return (
-    <div>
+    <div className="flex flex-row items-center gap-2">
       <Button
         isIconOnly
         color="danger"
@@ -45,7 +45,9 @@ function PostLikeButton({ post }: { post: { _id: string; likes: string[] } }) {
       >
         {isLiked ? <IoHeart /> : <IoHeartOutline />}
       </Button>
-      {post.likes.length}
+      <span className="text-lg font-medium text-foreground">
+        {post.likes.length}
+      </span>
     </div>
   );
 }

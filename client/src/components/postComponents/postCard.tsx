@@ -7,6 +7,7 @@ import { LuCalendarDays } from "react-icons/lu";
 import { format, formatDistance, subDays } from "date-fns";
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
+import ImageCard from "./imageCard";
 
 function PostCard({ post }: { post: Post }) {
   const date = formatDistance(post.date, new Date(), { addSuffix: true });
@@ -16,27 +17,21 @@ function PostCard({ post }: { post: Post }) {
     htmlExtensions: [gfmHtml()],
   });
   return (
-    <div className="flex h-screen w-3/4 max-w-screen-xl flex-col rounded-lg shadow-sm sm:h-96 sm:flex-row">
-      <div className="h-1/2 w-full bg-red-600 sm:h-full sm:w-1/2" />
-      <div className="flex h-1/2 w-full flex-col items-center justify-between gap-2 bg-accent p-4 sm:h-full sm:w-1/2 sm:p-5">
-        <div className="max-h-full overflow-hidden">
-          <h1 className="mb-2 line-clamp-3 text-center text-2xl text-foreground">
-            {post.title}
-          </h1>
-          <div
-            className="sm:line-clamp-10 line-clamp-3 max-w-full text-ellipsis text-left text-foreground"
-            dangerouslySetInnerHTML={{ __html: result }}
-          />
-        </div>
+    <div className="flex h-screen w-2/4 max-w-screen-xl flex-col rounded-bl-3xl rounded-br-xl rounded-tl-xl rounded-tr-3xl bg-card shadow-2xl sm:h-96 sm:flex-row">
+      <div className="flex size-full flex-col justify-between gap-2 p-4 sm:px-5 sm:pb-3 sm:pt-4">
+        <h1 className="line-clamp-2 min-h-fit pb-2 text-center text-2xl text-card-foreground">
+          {post.title}
+        </h1>
+        <ImageCard body={result} image="lol" />
 
-        <div className="flex w-full flex-row justify-between self-end">
+        <div className="flex h-5 w-full flex-row justify-between self-end">
           <div className="flex h-full flex-row items-center gap-1">
             <LuCalendarDays className="text-md self-start" />
-            <text className="self-end text-sm">{date}</text>
+            <span className="self-end text-sm">{date}</span>
           </div>
 
           <Link
-            className="flex h-full flex-shrink-0 text-sm text-blue-600"
+            className="flex h-full flex-shrink-0 text-sm font-medium text-destructive-foreground opacity-60 hover:opacity-100"
             href={`/posts/${post._id}`}
           >
             Continue Reading

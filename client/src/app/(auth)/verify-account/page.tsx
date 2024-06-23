@@ -33,26 +33,29 @@ const VerifyAccount = () => {
         <></>
       ) : (
         <div>
-          <div className=" flex flex-col">
-            <h1 className="text-4xl pb-2">Verify Email</h1>
+          <div className="flex flex-col">
+            <h1 className="pb-2 text-4xl">Verify Email</h1>
             {error && <p className="text-tiny text-red-700">{error}</p>}
-            {message && <p className="text-tiny ">{message}</p>}
+            {message && <p className="text-tiny">{message}</p>}
           </div>
           <div className="flex flex-col pt-2">
             <p>On your email address was sent verification link.</p>
           </div>
 
-          <div className="flex pt-2 flex-row justify-end">
+          <div className="flex flex-row justify-end pt-2">
             <Button
               radius="full"
               onPress={resendEmail}
-              className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+              className="rounded-bl-3xl rounded-br-lg rounded-tl-lg rounded-tr-3xl border-2.5 border-green-950 border-opacity-85 bg-gradient-to-tl from-orange-300 from-[-30%] to-pink-300 to-[130%] font-nunitoSans font-bold text-green-950 shadow-lg"
             >
               Resend link
             </Button>
           </div>
-          <div className="flex flex-row pt-2 gap-1 text-sm justify-start">
-            <Link href={"/sign-in"} className="text-blue-600">
+          <div className="flex flex-row justify-start gap-1 pt-2 text-sm">
+            <Link
+              href={"/sign-in"}
+              className="text-blue-600 dark:text-blue-500"
+            >
               Return
             </Link>
           </div>

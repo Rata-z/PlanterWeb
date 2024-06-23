@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <>
       <SiteHeader />
-      <main className="flex-1">
+      <main className="min-h-[calc(100vh-4.25rem)] flex-1">
         <div className="flex-1 flex-col">
           {authModal}
           {postModal}

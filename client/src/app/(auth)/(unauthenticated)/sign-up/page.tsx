@@ -87,8 +87,8 @@ const SignUp = () => {
   };
   return (
     <section className="flex flex-col">
-      <div className=" flex flex-col">
-        <h1 className="text-4xl pb-2">Sign Up</h1>
+      <div className="flex flex-col">
+        <h1 className="pb-2 text-4xl">Sign Up</h1>
         {error && <p className="text-tiny text-red-700">{error}</p>}
         <div className="flex flex-col gap-4 pt-2">
           <Input
@@ -96,7 +96,13 @@ const SignUp = () => {
             label="Email"
             value={email}
             onChange={(text) => setEmail(text.target.value)}
-            className=" border-gray-400 "
+            classNames={{
+              label: "text-foreground",
+              input: "text-foreground",
+              errorMessage: "absolute",
+              inputWrapper:
+                "border-border dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+            }}
             variant="bordered"
             isInvalid={!emailError ? false : true}
             errorMessage={emailError}
@@ -105,7 +111,13 @@ const SignUp = () => {
             type={isPasswordVisible ? "text" : "password"}
             label="Password"
             value={password}
-            className=" border-gray-400 "
+            classNames={{
+              label: "text-foreground",
+              input: "text-foreground",
+              errorMessage: "absolute",
+              inputWrapper:
+                "border-border dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+            }}
             variant="bordered"
             endContent={
               <PasswordButton
@@ -121,7 +133,13 @@ const SignUp = () => {
             type={isConfirmPasswordVisible ? "text" : "password"}
             label="Confirm Password"
             value={confirmPassword}
-            className=" border-gray-400 "
+            classNames={{
+              label: "text-foreground",
+              input: "text-foreground",
+              errorMessage: "absolute",
+              inputWrapper:
+                "border-border dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+            }}
             variant="bordered"
             endContent={
               <PasswordButton
@@ -136,27 +154,20 @@ const SignUp = () => {
         </div>
       </div>
 
-      <div className="flex pt-2 flex-row justify-end">
-        <Button
-          radius="full"
-          onPress={handleSignUpWithEmail}
-          className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-        >
-          Sign Up
-        </Button>
-      </div>
-      <div className="flex flex-row pt-2 gap-1 text-sm justify-start">
-        {/* <Button size="sm" color="primary" onPress={() => router.back()}>
-          Return
-        </Button> */}
-        <Link
-          href={"/sign-in"}
-          className="text-blue-600"
-          onClick={() => location.replace("/sign-in")}
-        >
-          {"Return"}
-        </Link>
-      </div>
+      <Button
+        radius="full"
+        onPress={handleSignUpWithEmail}
+        className="mt-3 flex self-end rounded-bl-3xl rounded-br-lg rounded-tl-lg rounded-tr-3xl border-2.5 border-green-950 border-opacity-85 bg-gradient-to-tl from-orange-300 from-[-30%] to-pink-300 to-[130%] font-nunitoSans font-bold text-green-950 shadow-lg"
+      >
+        Sign Up
+      </Button>
+      <Link
+        href={"/sign-in"}
+        className="text-sm text-blue-600 dark:text-blue-500"
+        onClick={() => location.replace("/sign-in")}
+      >
+        {"Return"}
+      </Link>
     </section>
   );
 };
