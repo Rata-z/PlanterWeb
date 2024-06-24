@@ -7,11 +7,19 @@ async function UserPosts({ params }: { params: { id: string } }) {
 
   return (
     <section className="flex flex-col">
-      <div className="flex flex-col gap-5">
-        {posts.map((post: Post) => {
-          return <PostLink key={post._id} post={post} />;
-        })}
-      </div>
+      {posts.length !== 0 ? (
+        <div className="flex flex-col gap-5">
+          {posts.map((post: Post) => {
+            return <PostLink key={post._id} post={post} />;
+          })}
+        </div>
+      ) : (
+        <div className="flex w-full items-center">
+          <h1 className="self-center text-xl text-foreground">
+            No posts found!
+          </h1>
+        </div>
+      )}
     </section>
   );
 }

@@ -13,7 +13,6 @@ const nunitoSans = Nunito_Sans({
 export const metadata = {
   title: "Planter",
   description: "Planter is plant care oriented platform.",
-  icons: { icon: "../assets/icons/logo.svg" },
 };
 
 export default function RootLayout({

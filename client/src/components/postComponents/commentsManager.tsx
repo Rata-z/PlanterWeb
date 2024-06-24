@@ -95,7 +95,7 @@ function CommentsManager({
             input: "text-foreground",
             errorMessage: "absolute",
             inputWrapper:
-              "border-border  transition-colors-opacity hover:border-foreground  shadow-lg ",
+              "border-border bg-accent  transition-colors-opacity hover:border-foreground  shadow-lg ",
           }}
           errorMessage={commentError}
           isInvalid={!commentError ? false : true}

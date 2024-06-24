@@ -8,7 +8,7 @@ export interface Post {
   updated?: Date;
   comments: Comment[];
   likes: string[];
-  image?: boolean;
+  image?: string;
 }
 
 export interface ErrorMessage {
@@ -39,7 +39,12 @@ export const getPost = async (id: string) => {
   }
   return null;
 };
-export const addPost = async (token: string, title: string, body: string) => {
+export const addPost = async (
+  token: string,
+  title: string,
+  body: string,
+  image: string | undefined,
+) => {
   try {
     const response = await fetch("http://localhost:5000/api/posts", {
       method: "POST",
@@ -47,7 +52,7 @@ export const addPost = async (token: string, title: string, body: string) => {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, body }),
+      body: JSON.stringify({ title, body, image }),
       next: { revalidate: 30 },
     });
     const data: Post | ErrorMessage = await response.json();
@@ -131,7 +136,7 @@ export const getUserPosts = async (userID: string) => {
 
 export const editPost = async (
   token: string,
-  post: { _id: string; title: string; body: string },
+  post: { _id: string; title: string; body: string; image: string | undefined },
 ) => {
   try {
     const response = await fetch(

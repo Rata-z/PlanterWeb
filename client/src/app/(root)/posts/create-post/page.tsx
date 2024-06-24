@@ -16,6 +16,7 @@ import {
 } from "@/api/posts/postController";
 function CreatePost() {
   const [title, setTitle] = useState<string>("");
+  const [image, setImage] = useState<string | undefined>(undefined);
   const [isEdited, setIsEdited] = useState<boolean>(false);
   const [titleError, setTitleError] = useState<string | null>(null);
   const router = useRouter();
@@ -41,6 +42,7 @@ function CreatePost() {
       throw new Error("Unauthorized. User is not the author.");
     setTitle(response.title);
     setBody(response.body);
+    setImage(response.image);
   };
 
   const handleCreate = async () => {
@@ -51,7 +53,7 @@ function CreatePost() {
     const token = await currentUser?.getIdToken(true);
 
     if (!token) throw new Error("Missing Token");
-    const newPostId = await addPost(token, title, body);
+    const newPostId = await addPost(token, title, body, image);
 
     if (!newPostId)
       throw new Error("Action Error: Unable to navigate to created post");
@@ -69,7 +71,7 @@ function CreatePost() {
     if (!postId) throw new Error("Missing post ID");
     const token = await currentUser?.getIdToken();
     if (!token) throw new Error("Missing Token");
-    const updatedPost = { title, body, _id: postId };
+    const updatedPost = { title, body, _id: postId, image };
     await editPost(token, updatedPost);
     location.replace("/posts/" + postId);
   };
@@ -86,6 +88,19 @@ function CreatePost() {
             className="z-0 w-80 border-gray-400"
             errorMessage={titleError}
             isInvalid={!titleError ? false : true}
+            variant="bordered"
+          />
+          <Input
+            isRequired
+            type="text"
+            label="Image Path"
+            value={image}
+            onChange={(text) => {
+              text.target.value == ""
+                ? setImage(undefined)
+                : setImage(text.target.value);
+            }}
+            className="z-0 w-80 border-gray-400"
             variant="bordered"
           />
           {isEdited ? (

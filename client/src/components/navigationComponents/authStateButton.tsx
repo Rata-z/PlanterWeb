@@ -23,7 +23,7 @@ function AuthStateButton({ props }: { props: AuthStateProps }) {
         <Dropdown
           radius="sm"
           classNames={{
-            content: "p-0 border-small border-divider bg-background",
+            content: "p-0 border-small border-divider bg-accent",
           }}
         >
           <DropdownTrigger>
@@ -32,7 +32,7 @@ function AuthStateButton({ props }: { props: AuthStateProps }) {
               isIconOnly
               className="self-center rounded-bl-2xl rounded-br-md rounded-tl-md rounded-tr-2xl bg-card p-1 shadow-xl"
             >
-              <HiOutlineUser className="text-green-950" size={20} />
+              <HiOutlineUser className="text-foreground" size={20} />
             </Button>
           </DropdownTrigger>
           <DropdownMenu
@@ -57,7 +57,7 @@ function AuthStateButton({ props }: { props: AuthStateProps }) {
               className="h-14 gap-2 opacity-100"
             >
               <UserItem
-                name={props.currentUser.email?.split("@")[0]}
+                name={props.currentUser.displayName}
                 description={props.currentUser.email}
                 classNames={{
                   name: "text-default-600",

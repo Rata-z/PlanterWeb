@@ -12,7 +12,15 @@ function PostLink({ post }: { post: Post }) {
       href={"/posts/" + post._id}
       className="flex h-fit min-h-20 flex-row gap-4 overflow-hidden rounded-2xl bg-card p-2 shadow-2xl"
     >
-      <Image src={IMG} className="w-20 rounded-lg shadow-xl" alt="xd" />
+      <div className={`relative h-full w-20 ${!post.image && "hidden"}`}>
+        <Image
+          src={post.image ? post.image : ""}
+          className="rounded-lg"
+          quality={50}
+          fill
+          alt="Post Image"
+        />
+      </div>
       <div className="flex size-full flex-col justify-between overflow-hidden text-medium">
         <Link
           key={post._id}

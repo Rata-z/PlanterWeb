@@ -1,4 +1,4 @@
-import SideNav from "@/components/navigationComponents/dashboard/sideNav";
+import SideNav from "@/components/dashboardComponents/sideNav";
 import React from "react";
 
 export default function DashboardLayout({

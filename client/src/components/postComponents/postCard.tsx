@@ -22,7 +22,7 @@ function PostCard({ post }: { post: Post }) {
         <h1 className="line-clamp-2 min-h-fit pb-2 text-center text-2xl text-card-foreground">
           {post.title}
         </h1>
-        <ImageCard body={result} image="lol" />
+        <ImageCard body={result} image={post.image} />
 
         <div className="flex h-5 w-full flex-row justify-between self-end">
           <div className="flex h-full flex-row items-center gap-1">

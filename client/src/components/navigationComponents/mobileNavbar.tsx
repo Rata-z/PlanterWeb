@@ -7,7 +7,7 @@ import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 import ThemeSwitch from "./themeSwitch";
-import MobileSideNav from "./dashboard/mobileSideNav";
+import MobileSideNav from "../dashboardComponents/mobileSideNav";
 
 function MobileNavbar() {
   const [isOpened, setIsOpened] = useState(false);

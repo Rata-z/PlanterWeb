@@ -18,7 +18,7 @@ export const getPost = async (req, res) => {
 export const editPost = async (req, res) => {
   const uid = req.user.uid;
 
-  const { title, body, _id } = req.body;
+  const { title, body, _id, image } = req.body;
 
   try {
     const updatedPost = await Post.findById(_id);
@@ -35,6 +35,7 @@ export const editPost = async (req, res) => {
 
     updatedPost.title = title;
     updatedPost.body = body;
+    updatedPost.image = image;
     updatedPost.updated = new Date();
 
     await updatedPost.save();
@@ -75,8 +76,8 @@ export const deletePost = async (req, res) => {
 export const addPost = async (req, res) => {
   const uid = req.user.uid;
   try {
-    const { title, body } = req.body;
-    const newPost = new Post({ author: uid, title, body });
+    const { title, body, image } = req.body;
+    const newPost = new Post({ author: uid, title, body, image });
     const result = await newPost.save();
     res.status(201).json(result);
   } catch (error) {

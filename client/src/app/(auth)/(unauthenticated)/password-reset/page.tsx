@@ -17,7 +17,7 @@ function PasswordReset() {
     setMessage(null);
   };
 
-  const handleSignInWithEmail = async () => {
+  const handleResetWithEmail = async () => {
     try {
       await sendResetLink(email).then(() => {
         setEmail("");
@@ -62,7 +62,7 @@ function PasswordReset() {
       <div className="flex flex-row justify-end pt-2">
         <Button
           radius="full"
-          onPress={message ? handleSendNewLink : handleSignInWithEmail}
+          onPress={message ? handleSendNewLink : handleResetWithEmail}
           className="rounded-bl-3xl rounded-br-lg rounded-tl-lg rounded-tr-3xl border-2.5 border-green-950 border-opacity-85 bg-gradient-to-tl from-orange-300 from-[-30%] to-pink-300 to-[130%] font-nunitoSans font-bold text-green-950 shadow-lg"
         >
           {message ? "Send new link" : "Send link"}

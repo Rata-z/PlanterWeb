@@ -24,7 +24,7 @@ function PostDetailsModal({ params: { id } }: { params: { id: string } }) {
     <ModalWrapper>
       {isReady ? (
         post && (
-          <div className="scrollbar-rounded flex w-[85%] justify-center overflow-y-auto rounded-2xl border-2 border-pink-300 bg-accent px-5 py-3 sm:w-[75%] md:w-[65%]">
+          <div className="scrollbar-rounded flex w-[85%] justify-center overflow-y-auto rounded-2xl border-2 border-pink-300 bg-background px-5 py-3 sm:w-[75%] md:w-[65%]">
             <PostDetailsRenderer post={post} />
           </div>
         )

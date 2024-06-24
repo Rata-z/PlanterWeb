@@ -15,7 +15,7 @@ function SideNav() {
   const { currentUser } = useAuth();
   const pathname = usePathname();
 
-  if (currentUser) {
+  if (currentUser && pathname.includes(currentUser.uid)) {
     return (
       <div className="flex h-full w-full items-center pl-10">
         <div className="flex h-[60%] flex-col items-center justify-evenly rounded-full bg-card p-4 text-card-foreground">

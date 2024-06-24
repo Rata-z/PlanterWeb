@@ -9,7 +9,7 @@ interface ImageCardProps {
 }
 
 function ImageCard({ body, image }: ImageCardProps) {
-  const [detailsVisibility, changeDetailsVisibility] = useState("opacity-100");
+  const [detailsVisibility, changeDetailsVisibility] = useState("opacity-0");
   const toggleVisibility = () => {
     const newOpacity =
       detailsVisibility === "opacity-100" ? "opacity-0" : "opacity-100";
@@ -17,13 +17,11 @@ function ImageCard({ body, image }: ImageCardProps) {
   };
   return (
     <>
-      {image ? (
+      {image !== undefined ? (
         <div
           className="flex size-full overflow-hidden rounded-md"
           style={{
-            backgroundImage: image
-              ? `url(https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?cs=srgb&dl=pexels-akilmazumder-1072824.jpg&fm=jpg)`
-              : "none",
+            backgroundImage: image ? `url(${image})` : "none",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -31,14 +29,11 @@ function ImageCard({ body, image }: ImageCardProps) {
           onClick={() => toggleVisibility()}
         >
           <div
-            className={
-              "size-full text-ellipsis bg-black bg-opacity-75 p-3 " +
-              detailsVisibility
-            }
+            className={`size-full text-ellipsis bg-black bg-opacity-75 p-3 ${detailsVisibility}`}
           >
             <div
               className={
-                "sm:line-clamp-7 prose line-clamp-10 text-left text-card-foreground prose-headings:text-card-foreground"
+                "prose line-clamp-10 text-left text-card-foreground prose-headings:text-card-foreground sm:line-clamp-7"
               }
               dangerouslySetInnerHTML={{ __html: body }}
             />
@@ -46,14 +41,11 @@ function ImageCard({ body, image }: ImageCardProps) {
         </div>
       ) : (
         <div
-          className={
-            "flex size-full overflow-hidden text-ellipsis rounded-md bg-black bg-opacity-75 p-3 " +
-            detailsVisibility
-          }
+          className={"size-full overflow-hidden text-ellipsis rounded-md p-3"}
         >
           <div
             className={
-              "line-clamp-7 prose text-left text-card-foreground prose-headings:text-card-foreground"
+              "prose line-clamp-10 text-left text-card-foreground prose-headings:text-card-foreground sm:line-clamp-7"
             }
             dangerouslySetInnerHTML={{ __html: body }}
           />
