@@ -7,7 +7,7 @@ import { FirebaseError } from "firebase/app";
 import React, { useState } from "react";
 
 function DeleteHandler() {
-  const { currentUser, deleteCurrentUser } = useAuth();
+  const { currentUser, deleteCurrentUser,reauthenticateUser } = useAuth();
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [passwordError, setPasswordError] = useState<string | null>(null);
@@ -15,17 +15,24 @@ function DeleteHandler() {
   const googleProvider =
     currentUser?.providerData[0].providerId === "google.com" ? true : false;
 
-  const handleDeleteUser = () => {
+  const handleDeleteUser = async () => {
     if (!googleProvider && password === "") {
       setPasswordError("Enter account password");
     } else {
+      if (!currentUser) {
+        throw new Error("Current user not found");
+      }
       try {
-        if (!currentUser) {
-          throw new Error("Current user not found");
+        const credentials=await reauthenticateUser(password)
+        if (!credentials) throw new Error("Credentials not found")
+        try{
+          await deleteCurrentUser(credentials)
+
+        }catch(e){
+          console.log(e)
         }
-        if (!googleProvider) deleteCurrentUser(password);
-        else deleteCurrentUser(null);
       } catch (e) {
+        console.log(e)
         if (e instanceof FirebaseError && e.code === "auth/wrong-password") {
           setPasswordError("Wrong Password");
         } else setPasswordError("Action Error");
