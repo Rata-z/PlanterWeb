@@ -9,17 +9,6 @@ export interface Comment {
   updated?: Date;
 }
 
-// const CommentSchema = new Schema<Comment>({
-//   _id: {
-//     type: Schema.Types.ObjectId,
-//     default: new mongoose.Types.ObjectId(),
-//   },
-//   author: { type: String, required: true },
-//   body: { type: String, required: true },
-//   date: { type: Date, default: Date.now },
-//   updated: { type: Date },
-// });
-
 const PostSchema = new Schema({
   author: {
     type: String,

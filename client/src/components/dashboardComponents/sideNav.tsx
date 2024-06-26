@@ -18,7 +18,7 @@ function SideNav() {
   if (currentUser && pathname.includes(currentUser.uid)) {
     return (
       <div className="flex h-full w-full items-center pl-10">
-        <div className="flex h-[60%] flex-col items-center justify-evenly rounded-full bg-card p-4 text-card-foreground">
+        <div className="flex shadow-2xl  h-[60%] flex-col items-center justify-evenly rounded-full bg-card p-4 text-card-foreground">
           <Link
             href={`/${currentUser.uid}`}
             className="flex flex-col items-center"

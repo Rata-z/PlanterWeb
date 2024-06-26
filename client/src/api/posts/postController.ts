@@ -35,7 +35,7 @@ export const getPost = async (id: string) => {
     }
     if (!isErrorMessage(data)) return data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error while fetching data: ", error);
   }
   return null;
 };

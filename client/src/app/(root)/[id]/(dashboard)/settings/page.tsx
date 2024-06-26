@@ -8,7 +8,7 @@ import DeleteHandler from "@/components/dashboardComponents/settingsComponents/d
 
 function Settings() {
   return (
-    <div className="flex size-full flex-col gap-5 rounded-3xl bg-accent p-6">
+    <section className="flex size-full flex-col gap-5 rounded-3xl bg-accent p-6 shadow-lg">
       <div className="flex flex-col gap-2 pb-2">
         <h1 className="text-xl">General</h1>
         <div className="flex w-full flex-col gap-1 px-3">
@@ -31,7 +31,7 @@ function Settings() {
           <DeleteHandler />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

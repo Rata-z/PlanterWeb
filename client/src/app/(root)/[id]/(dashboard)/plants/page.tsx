@@ -1,17 +1,10 @@
-"use client";
-import { Post, getUserPosts } from "@/api/posts/postController";
-import { useAuth } from "@/context/authContext";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import PostLink from "@/components/postComponents/postLink";
+import UserPlants from "@/components/dashboardComponents/plantsComponents/userPlants";
+import React from "react";
 
-function Dashboard() {
-  const { currentUser } = useAuth();
-  const router = useRouter();
-
+async function Dashboard() {
   return (
     <section className="flex flex-col">
-      {currentUser && <div>TU PLANTSY HEHE</div>}
+      <UserPlants />
     </section>
   );
 }

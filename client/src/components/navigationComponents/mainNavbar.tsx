@@ -17,14 +17,14 @@ export default function MainNavbar() {
   return (
     <div className="flex w-screen">
       <nav className={"flex w-full items-center justify-between"}>
-        <div className="flex flex-row items-center sm:gap-3">
-          <Link href={"/"}>
-            <Icons.logo className="size-11" />
+        <div className="flex flex-row items-center">
+          <Link href={"/"} className="flex flex-row">
+            <Icons.logo className="size-10" />
+            <h1 className="self-end text-2xl text-card-foreground">lanter</h1>
           </Link>
-          <ThemeSwitch className={"hidden sm:inline-block sm:pt-2"} />
         </div>
 
-        <div className="flex items-center justify-center gap-16 pr-[6.5%]">
+        <div className="flex items-center justify-center gap-16 pr-[1.5%]">
           <NavigationButton
             currentPathName={pathname}
             text="BLOGS"
@@ -49,7 +49,8 @@ export default function MainNavbar() {
             clickNavigation={true}
           />
         </div>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center gap-2">
+          <ThemeSwitch className={"hidden sm:inline-block sm:pt-2"} />
           <AuthStateButton props={{ currentUser, signOut }} />
         </div>
         <MobileNavbar />

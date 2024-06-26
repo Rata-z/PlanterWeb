@@ -19,7 +19,7 @@ function ImageCard({ body, image }: ImageCardProps) {
     <>
       {image !== undefined ? (
         <div
-          className="flex size-full overflow-hidden rounded-md"
+          className="flex size-full overflow-hidden rounded-md shadow-lg"
           style={{
             backgroundImage: image ? `url(${image})` : "none",
             backgroundRepeat: "no-repeat",

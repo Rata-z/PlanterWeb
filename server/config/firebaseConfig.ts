@@ -5,6 +5,7 @@ import {
   ListUsersResult,
   getAuth,
 } from "firebase-admin/auth";
+import { getFirestore } from "firebase-admin/firestore";
 
 export const connectFirebase = (): void => {
   const credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
@@ -14,6 +15,13 @@ export const connectFirebase = (): void => {
   });
 
   console.log("Firebase connected");
+};
+
+export const connectFirestore = (): FirebaseFirestore.Firestore => {
+  const db = getFirestore();
+  console.log("Firestore connected");
+
+  return db;
 };
 
 export const listUsers = async (): Promise<ListUsersResult> => {
