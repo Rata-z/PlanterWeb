@@ -55,9 +55,12 @@ function MobileNavbar() {
             CREATE
           </MobileLink>
         </div>
-        <div className="flex">
+        <div className="mt-auto">
           <ThemeSwitch className="" />
         </div>
+        <p className="text-tiny text-gray-500 dark:text-gray-400">
+          &copy; 2024 Planter. All rights reserved.
+        </p>
       </SheetContent>
     </Sheet>
   );

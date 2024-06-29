@@ -99,8 +99,8 @@ function CommentsManager({
           variant="underlined"
         />
         <Button
-          size="sm"
-          className="mt-6 rounded-bl-3xl rounded-br-lg rounded-tl-lg rounded-tr-3xl border-2.5 border-green-950 border-opacity-85 bg-gradient-to-tl from-orange-300 from-[-30%] to-pink-300 to-[130%] font-nunitoSans font-bold text-green-950 shadow-lg"
+          size="md"
+          className="mt-4 rounded-bl-3xl rounded-br-lg rounded-tl-lg rounded-tr-3xl border-2.5 border-green-950 border-opacity-85 bg-gradient-to-tl from-orange-300 from-[-30%] to-pink-300 to-[130%] font-nunitoSans font-bold text-green-950 shadow-lg"
           onPress={handleAddComment}
         >
           ADD
@@ -128,7 +128,7 @@ function CommentsManager({
                     <div className="flex">
                       {currentUser && com.author === currentUser.uid && (
                         <span
-                          className="flex text-blue-800 hover:cursor-pointer"
+                          className="flex text-blue-600 hover:cursor-pointer"
                           onClick={() => handleEditComment(com._id, com.body)}
                         >
                           Edit
@@ -174,6 +174,7 @@ function CommentsManager({
                     <Button
                       color="danger"
                       size="sm"
+                      variant="ghost"
                       onPress={() => handleDeleteComment(com._id)}
                     >
                       Delete

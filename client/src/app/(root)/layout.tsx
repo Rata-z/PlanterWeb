@@ -1,4 +1,4 @@
-import SiteFooter from "@/components/navigationComponents/siteFooter";
+import SiteFooter from "@/components/navigationComponents/siteBottomFooter";
 import { SiteHeader } from "@/components/navigationComponents/siteHeader";
 
 export default function RootLayout({
@@ -13,14 +13,13 @@ export default function RootLayout({
   return (
     <>
       <SiteHeader />
-      <main className="min-h-[calc(100vh-4.25rem)] flex-1 pb-10">
+      <main className="h-[calc(100vh-4.25rem)] flex-1">
         <div className="flex-1 flex-col">
           {authModal}
           {postModal}
           {children}
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

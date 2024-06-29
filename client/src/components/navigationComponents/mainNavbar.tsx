@@ -22,7 +22,7 @@ export default function MainNavbar() {
           </Link>
         </div>
 
-        <div className="flex flex-row gap-16 pr-[1.5%] pt-1.5">
+        <div className="flex flex-row pr-[6%] pt-1.5 sm:gap-6 md:gap-16">
           <NavigationButton
             currentPathName={pathname}
             text="BLOGS"

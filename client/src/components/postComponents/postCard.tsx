@@ -16,9 +16,9 @@ function PostCard({ post }: { post: Post }) {
     htmlExtensions: [gfmHtml()],
   });
   return (
-    <div className="flex min-h-fit w-2/4 max-w-screen-xl flex-col rounded-bl-3xl rounded-br-xl rounded-tl-xl rounded-tr-3xl border-t-2 border-ring bg-accent shadow-xl sm:h-96 sm:flex-row">
+    <div className="flex min-h-fit w-5/6 max-w-screen-xl flex-col rounded-bl-3xl rounded-br-xl rounded-tl-xl rounded-tr-3xl border-t-2 bg-accent shadow-xl sm:h-96 sm:w-3/4 sm:flex-row md:w-2/3 lg:w-2/4">
       <div className="flex size-full flex-col justify-between gap-2 p-4 sm:px-5 sm:pb-3 sm:pt-4">
-        <h1 className="font-halant line-clamp-2 min-h-fit pb-2 text-center text-3xl text-foreground">
+        <h1 className="line-clamp-2 min-h-fit pb-2 text-center font-halant text-3xl text-foreground">
           {post.title}
         </h1>
         <ImageCard body={result} image={post.image} />

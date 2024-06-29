@@ -17,7 +17,7 @@ const halant = Halant({
 
 export const metadata = {
   title: "Planter",
-  description: "Planter is plant care oriented platform.",
+  description: "Planter is a plant care oriented platform.",
 };
 
 export default function RootLayout({
@@ -29,7 +29,7 @@ export default function RootLayout({
     <html suppressHydrationWarning={true} lang="en">
       <body
         className={cn(
-          "font-halant min-h-screen bg-background font-nunitoSans antialiased",
+          "min-h-screen bg-background font-nunitoSans antialiased",
           nunitoSans.variable,
           halant.variable,
         )}

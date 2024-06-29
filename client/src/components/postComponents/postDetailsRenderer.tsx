@@ -20,20 +20,19 @@ function PostDetailsRenderer({ post }: { post: Post }) {
   return (
     <div className="flex w-full flex-col">
       <div className="flex flex-col justify-center border-b-1 bg-accent">
-        <div
-          className={`relative h-72 w-full items-center p-10 ${
-            post.image === undefined ? "hidden" : ""
-          }`}
-        >
-          <Image
-            src={post.image ? post.image : ""}
-            alt={"Post cover image"}
-            fill
-            priority
-            sizes="(min-width: 2160px) 1280px, (min-width: 640px) calc(58.67vw + 25px), 85vw"
-          />
-        </div>
-        <p className="font-halant my-2 text-center text-4xl">{post.title}</p>
+        {post.image && (
+          <div className={"relative h-72 w-full items-center p-10"}>
+            <Image
+              src={post.image}
+              alt={"Post cover image"}
+              fill
+              priority
+              sizes="(min-width: 2160px) 1280px, (min-width: 640px) calc(58.67vw + 25px), 85vw"
+            />
+          </div>
+        )}
+
+        <p className="my-2 text-center font-halant text-4xl">{post.title}</p>
         <div className="flex w-full justify-end px-2">
           <PostManager post={post} />
         </div>
@@ -45,9 +44,9 @@ function PostDetailsRenderer({ post }: { post: Post }) {
           <UserLink author={post.author} username={post.username} />
         </div>
       </div>
-      <div className="prose prose-blue flex min-w-full flex-col gap-3 pb-2 prose-headings:text-foreground prose-p:text-foreground prose-blockquote:text-foreground prose-code:text-foreground prose-ol:text-border prose-li:text-foreground prose-td:text-foreground">
+      <div className="prose prose-blue flex min-w-full flex-col gap-3 pb-2 prose-headings:text-foreground prose-p:text-foreground prose-blockquote:text-foreground prose-code:text-card-foreground prose-ol:text-border prose-li:text-foreground prose-td:text-foreground dark:prose-pre:bg-gray-900">
         <div
-          className="border-borde w-full items-center rounded-b-2xl bg-accent px-2 shadow-lg"
+          className="border-borde w-full items-center rounded-b-2xl bg-accent px-2 pt-2 shadow-lg"
           dangerouslySetInnerHTML={{ __html: result }}
         />
         <PostLikeButton post={{ _id: post._id, likes: post.likes }} />

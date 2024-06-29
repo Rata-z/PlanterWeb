@@ -1,17 +1,16 @@
 import { getPosts } from "@/api/posts/postController";
 import React from "react";
 import PostCard from "@/components/postComponents/postCard";
+import PostsLoader from "@/components/postComponents/postsLoader";
+import SiteMiniFooter from "@/components/navigationComponents/siteMiniFooter";
 
 const Home = async () => {
   const posts = await getPosts();
 
   return (
-    <section className="flex flex-col max-xl:max-h-screen max-xl:overflow-y-scroll">
-      <div className="flex flex-col items-center gap-8 pb-8">
-        {posts.toReversed().map((p) => {
-          return <PostCard key={p._id} post={p} />;
-        })}
-      </div>
+    <section className="flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll">
+      <PostsLoader posts={posts.toReversed()} />
+      <SiteMiniFooter />
     </section>
   );
 };
