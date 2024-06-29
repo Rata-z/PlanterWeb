@@ -1,6 +1,15 @@
 import mongoose from "mongoose";
 import Post, { Comment } from "../models/Post.js";
 import { v4 as uuidv4 } from "uuid";
+import { getAuth } from "firebase-admin/auth";
+
+const getUser = async (uid: string) => {
+  try {
+    const user = await getAuth().getUser(uid);
+    if (user) return user.displayName;
+  } catch (e) {}
+  return "";
+};
 
 export const getPost = async (req, res) => {
   const id = req.params.id;
@@ -9,6 +18,15 @@ export const getPost = async (req, res) => {
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
+    post.username = await getUser(post.author.toString());
+
+    const commentPromises = post.comments.map(async (comment: Comment) => {
+      comment.username = await getUser(comment.author.toString());
+      return comment;
+    });
+
+    post.comments = await Promise.all(commentPromises);
+
     res.status(200).json(post);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch post." });
@@ -91,6 +109,7 @@ export const getPosts = async (req, res) => {
     if (!posts) {
       return res.status(404).json({ message: "Posts not found" });
     }
+
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch posts." });

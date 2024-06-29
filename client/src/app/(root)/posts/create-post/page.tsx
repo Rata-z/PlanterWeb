@@ -78,20 +78,26 @@ function CreatePost() {
   return (
     <section className="flex w-full justify-center">
       <div className="flex h-full w-full max-w-screen-xl flex-col px-4">
-        <div className="flex w-full flex-row items-center justify-between">
+        <div className="flex w-full flex-row items-center justify-between pb-2">
           <Input
             isRequired
             type="text"
             label="Title"
             value={title}
             onChange={(text) => setTitle(text.target.value)}
-            className="z-0 w-80 border-gray-400"
+            className="z-0 w-80"
+            classNames={{
+              label: "text-foreground",
+              input: "text-foreground",
+              errorMessage: "absolute",
+              inputWrapper:
+                "border-gray-400 border-opacity-80   dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+            }}
             errorMessage={titleError}
             isInvalid={!titleError ? false : true}
             variant="bordered"
           />
           <Input
-            isRequired
             type="text"
             label="Image Path"
             value={image}
@@ -100,20 +106,27 @@ function CreatePost() {
                 ? setImage(undefined)
                 : setImage(text.target.value);
             }}
-            className="z-0 w-80 border-gray-400"
+            className="z-0 w-80"
+            classNames={{
+              label: "text-foreground",
+              input: "text-foreground",
+              errorMessage: "absolute",
+              inputWrapper:
+                "border-gray-400 border-opacity-80   dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+            }}
             variant="bordered"
           />
           {isEdited ? (
-            <div>
+            <div className="flex gap-4 self-end">
+              <Button onClick={handleDelete} variant="ghost" color="danger">
+                Delete
+              </Button>
               <Button onClick={handleConfirmEdit} color="primary">
                 Confirm
               </Button>
-              <Button onClick={handleDelete} color="danger">
-                Delete
-              </Button>
             </div>
           ) : (
-            <Button onClick={handleCreate} color="primary">
+            <Button onClick={handleCreate} className="self-end" color="primary">
               Publish
             </Button>
           )}

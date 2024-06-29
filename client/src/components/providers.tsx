@@ -1,7 +1,6 @@
 "use client";
 import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProvider } from "next-themes";
-
 import { AuthProvider } from "@/context/authContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {

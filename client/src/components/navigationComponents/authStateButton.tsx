@@ -6,7 +6,6 @@ import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
-  DropdownSection,
   DropdownItem,
 } from "@nextui-org/dropdown";
 import React from "react";
@@ -18,7 +17,7 @@ interface AuthStateProps {
 
 function AuthStateButton({ props }: { props: AuthStateProps }) {
   return (
-    <div className="hidden text-nowrap sm:inline-block">
+    <div className="hidden self-center text-nowrap sm:inline-block">
       {props.currentUser ? (
         <Dropdown
           radius="sm"
@@ -85,7 +84,9 @@ function AuthStateButton({ props }: { props: AuthStateProps }) {
           </DropdownMenu>
         </Dropdown>
       ) : (
-        <Link href={"/sign-in"}>SIGN IN</Link>
+        <Link className="text-card-foreground" href={"/sign-in"}>
+          SIGN IN
+        </Link>
       )}
     </div>
   );

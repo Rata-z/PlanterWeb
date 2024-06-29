@@ -1,12 +1,17 @@
 import "./globals.css";
-import { Inter, Nunito_Sans } from "next/font/google";
+import { Nunito_Sans, Halant } from "next/font/google";
 import { Providers } from "../components/providers";
 import { cn } from "@/lib/utils";
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-nunito-sans",
   weight: ["400", "500", "700"],
+  adjustFontFallback: false,
+});
+const halant = Halant({
+  subsets: ["latin"],
+  variable: "--font-halant",
+  weight: ["400"],
   adjustFontFallback: false,
 });
 
@@ -24,8 +29,9 @@ export default function RootLayout({
     <html suppressHydrationWarning={true} lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-nunitoSans antialiased",
+          "font-halant min-h-screen bg-background font-nunitoSans antialiased",
           nunitoSans.variable,
+          halant.variable,
         )}
       >
         <Providers>

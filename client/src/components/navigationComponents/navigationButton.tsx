@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { User } from "firebase/auth";
 import Link from "next/link";
 import React from "react";
 

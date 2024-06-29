@@ -3,6 +3,7 @@ export interface Post {
   _id: string;
   title: string;
   author: string;
+  username: string;
   body: string;
   date: Date;
   updated?: Date;
@@ -33,6 +34,7 @@ export const getPost = async (id: string) => {
         throw new Error(`Fetching error: ${data.message}`);
       else throw new Error(`Fetching error: ${response.status}`);
     }
+    console.log(data);
     if (!isErrorMessage(data)) return data;
   } catch (error) {
     console.error("Error while fetching data: ", error);

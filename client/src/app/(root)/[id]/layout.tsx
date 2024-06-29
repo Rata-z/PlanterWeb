@@ -5,7 +5,7 @@ export default function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="mb-5 flex min-h-[calc(100vh-4.25rem)] flex-row justify-center sm:justify-normal">
+    <main className="flex h-[calc(100vh-6.25rem)] flex-row justify-center sm:justify-normal">
       <div className="hidden w-[20%] sm:flex">
         <SideNav />
       </div>

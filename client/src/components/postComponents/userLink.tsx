@@ -2,7 +2,13 @@
 import Link from "next/link";
 import React from "react";
 
-function UserLink({ author }: { author: string }) {
+function UserLink({
+  author,
+  username,
+}: {
+  author: string;
+  username: string | undefined;
+}) {
   return (
     <Link
       href={`/${author}`}
@@ -11,7 +17,7 @@ function UserLink({ author }: { author: string }) {
       }}
       className="font-medium text-foreground no-underline"
     >
-      {author}
+      {!username || username === "" ? author : username}
     </Link>
   );
 }

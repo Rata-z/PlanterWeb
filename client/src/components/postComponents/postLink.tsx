@@ -2,7 +2,6 @@ import { Post } from "@/api/posts/postController";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import IMG from "@/assets/pexels-akilmazumder-1072824.jpg";
 import { IoHeart } from "react-icons/io5";
 
 function PostLink({ post }: { post: Post }) {
@@ -10,7 +9,7 @@ function PostLink({ post }: { post: Post }) {
     <Link
       key={post._id}
       href={"/posts/" + post._id}
-      className="flex h-fit min-h-20 flex-row gap-4 overflow-hidden rounded-2xl bg-card p-2 shadow-2xl"
+      className="flex min-h-20 w-full flex-row gap-4 overflow-hidden rounded-2xl bg-accent p-2 px-3 shadow-xl"
     >
       <div className={`relative h-full w-20 ${!post.image && "hidden"}`}>
         <Image
@@ -22,11 +21,7 @@ function PostLink({ post }: { post: Post }) {
         />
       </div>
       <div className="flex size-full flex-col justify-between overflow-hidden text-medium">
-        <Link
-          key={post._id}
-          href={"/posts/" + post._id}
-          className="flex text-card-foreground"
-        >
+        <Link key={post._id} href={"/posts/" + post._id} className="flex">
           {post.title}
         </Link>
         <div className="flex h-5 w-full flex-row items-center gap-6 self-end font-bold">

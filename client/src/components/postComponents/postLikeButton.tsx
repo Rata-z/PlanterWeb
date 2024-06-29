@@ -2,7 +2,6 @@
 import { togglePostLike } from "@/api/posts/postController";
 import { useAuth } from "@/context/authContext";
 import { Button } from "@nextui-org/button";
-import { Switch } from "@nextui-org/switch";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
@@ -17,7 +16,7 @@ function PostLikeButton({ post }: { post: { _id: string; likes: string[] } }) {
   }, []);
 
   const handleLikePress = async () => {
-    if (!currentUser) router.push("/sign-in");
+    if (!currentUser) location.assign("/sign-in");
     else if (!currentUser.emailVerified) router.push("/verify-account");
 
     try {

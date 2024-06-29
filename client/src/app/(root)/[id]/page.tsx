@@ -6,9 +6,9 @@ async function UserPosts({ params }: { params: { id: string } }) {
   const posts = await getUserPosts(params.id);
 
   return (
-    <section className="flex flex-col">
+    <section className="scrollbar-rounded flex size-full flex-col overflow-auto">
       {posts.length !== 0 ? (
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 px-4 pb-8 sm:px-8">
           {posts.map((post: Post) => {
             return <PostLink key={post._id} post={post} />;
           })}

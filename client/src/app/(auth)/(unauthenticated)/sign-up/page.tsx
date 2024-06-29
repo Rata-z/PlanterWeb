@@ -101,7 +101,7 @@ const SignUp = () => {
               input: "text-foreground",
               errorMessage: "absolute",
               inputWrapper:
-                "border-border dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+                "border-gray-400 border-opacity-80  dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
             }}
             variant="bordered"
             isInvalid={!emailError ? false : true}
@@ -116,7 +116,7 @@ const SignUp = () => {
               input: "text-foreground",
               errorMessage: "absolute",
               inputWrapper:
-                "border-border dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+                "border-gray-400 border-opacity-80  dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
             }}
             variant="bordered"
             endContent={
@@ -138,7 +138,7 @@ const SignUp = () => {
               input: "text-foreground",
               errorMessage: "absolute",
               inputWrapper:
-                "border-border dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+                "border-gray-400 border-opacity-80  dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
             }}
             variant="bordered"
             endContent={

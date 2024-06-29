@@ -9,9 +9,7 @@ import {
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { useAuth } from "@/context/authContext";
-import { useRouter } from "next/navigation";
-import { format, formatDistance } from "date-fns";
-import Link from "next/link";
+import { formatDistance } from "date-fns";
 import UserLink from "./userLink";
 function CommentsManager({
   post,
@@ -23,7 +21,6 @@ function CommentsManager({
   const [editedCommentText, changeEditedCommentText] = useState<string>("");
   const [commentError, setCommentError] = useState<null | string>(null);
   const [commentEditError, setCommentEditError] = useState<null | string>(null);
-  const router = useRouter();
   const sortedComments = useMemo(
     () => [...post.comments].reverse(),
     [post.comments],
@@ -32,7 +29,7 @@ function CommentsManager({
   const { currentUser } = useAuth();
   const handleAddComment = async () => {
     if (!currentUser) {
-      router.push("/sign-in");
+      location.assign("/sign-in");
     } else {
       if (newCommentText === "") setCommentError("Comment can't be empty");
       else {
@@ -95,7 +92,7 @@ function CommentsManager({
             input: "text-foreground",
             errorMessage: "absolute",
             inputWrapper:
-              "border-border bg-accent  transition-colors-opacity hover:border-foreground  shadow-lg ",
+              "border-gray-400 border-opacity-80  bg-accent  transition-colors-opacity hover:border-foreground  shadow-lg ",
           }}
           errorMessage={commentError}
           isInvalid={!commentError ? false : true}
@@ -119,7 +116,7 @@ function CommentsManager({
               {editedCommentID !== com._id ? (
                 <div className="flex w-full flex-col">
                   <div className="flex w-full flex-row gap-4">
-                    <UserLink author={com.author} />
+                    <UserLink author={com.author} username={com.username} />
 
                     <span>
                       {formatDistance(com.date, new Date(), {
@@ -156,7 +153,7 @@ function CommentsManager({
                         input: "text-foreground",
                         errorMessage: "absolute",
                         inputWrapper:
-                          "border-border transition-colors-opacity hover:border-foreground  ",
+                          "border-gray-400 border-opacity-80  transition-colors-opacity hover:border-foreground  ",
                       }}
                       errorMessage={commentEditError}
                       isInvalid={!commentEditError ? false : true}

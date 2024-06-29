@@ -3,6 +3,7 @@ import { ErrorMessage, Post, isErrorMessage } from "./postController";
 export interface Comment {
   _id: string;
   author: string;
+  username: string;
   body: string;
   date: Date;
   updated?: Date;
@@ -12,7 +13,7 @@ export const editComment = async (
   token: string,
   id: string,
   commentID: String,
-  comment: string
+  comment: string,
 ) => {
   try {
     const response = await fetch(
@@ -24,7 +25,7 @@ export const editComment = async (
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ body: comment }),
-      }
+      },
     );
 
     const data: Post | ErrorMessage = await response.json();
@@ -44,7 +45,7 @@ export const editComment = async (
 export const deleteComment = async (
   token: string,
   id: string,
-  commentID: String
+  commentID: String,
 ) => {
   try {
     const response = await fetch(
@@ -56,7 +57,7 @@ export const deleteComment = async (
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ _id: commentID }),
-      }
+      },
     );
 
     const data: Post | ErrorMessage = await response.json();
@@ -75,7 +76,7 @@ export const deleteComment = async (
 export const addComment = async (
   token: string,
   id: string,
-  comment: string
+  comment: string,
 ) => {
   try {
     const response = await fetch(
@@ -87,7 +88,7 @@ export const addComment = async (
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ body: comment }),
-      }
+      },
     );
 
     const data: Post | ErrorMessage = await response.json();

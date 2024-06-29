@@ -3,7 +3,7 @@ import React from "react";
 
 async function Dashboard() {
   return (
-    <section className="flex flex-col">
+    <section className="scrollbar-rounded size-full overflow-auto px-8">
       <UserPlants />
     </section>
   );

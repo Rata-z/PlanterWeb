@@ -19,8 +19,6 @@ import {
 } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
 import { useRouter } from "next/navigation";
-import { error } from "console";
-import { FirebaseError } from "firebase/app";
 
 interface AuthContextTypes {
   currentUser: User | null;
@@ -28,10 +26,12 @@ interface AuthContextTypes {
   signIn: (email: string, password: string) => Promise<UserCredential>;
   signUp: (email: string, password: string) => Promise<UserCredential>;
   signOut: () => Promise<void>;
-  deleteCurrentUser: (userCredential:UserCredential) => Promise<void>;
+  deleteCurrentUser: (userCredential: UserCredential) => Promise<void>;
   updateUserInfo: (info: string, value: string) => Promise<void>;
   continueWithGoogle: () => Promise<UserCredential>;
-  reauthenticateUser: (password:string|null) => Promise<UserCredential|undefined>;
+  reauthenticateUser: (
+    password: string | null,
+  ) => Promise<UserCredential | undefined>;
   sendVerificationLink: (user: User) => Promise<void>;
   sendResetLink: (email: string) => Promise<void>;
 }
@@ -64,29 +64,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const sendResetLink = async (email: string) => {
     return await sendPasswordResetEmail(auth, email);
   };
-  const reauthenticateUser=async(password:string|null)=>{
-    if(!currentUser || !currentUser.email) throw new Error("user not found")
-    if (password) return await await reauthenticateWithCredential(
-      currentUser,
-      EmailAuthProvider.credential(currentUser.email, password),
-    ); else {
-      
+  const reauthenticateUser = async (password: string | null) => {
+    if (!currentUser || !currentUser.email) throw new Error("user not found");
+    if (password)
+      return await await reauthenticateWithCredential(
+        currentUser,
+        EmailAuthProvider.credential(currentUser.email, password),
+      );
+    else {
       return await reauthenticateWithPopup(
         currentUser,
         new GoogleAuthProvider(),
       );
     }
-  }
+  };
 
-
-
-  const deleteCurrentUser = async (userCredential:UserCredential) => {
-    
-      
-        
-
-        return await deleteUser(userCredential.user);
-
+  const deleteCurrentUser = async (userCredential: UserCredential) => {
+    return await deleteUser(userCredential.user);
   };
   const sendVerificationLink = async (user: User) => {
     return await sendEmailVerification(user);
@@ -115,7 +109,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signUp,
     deleteCurrentUser,
     reauthenticateUser,
-
     updateUserInfo,
     sendResetLink,
     sendVerificationLink,

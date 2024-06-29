@@ -9,7 +9,6 @@ async function PostDetails({ params }: { params: { id: string } }) {
 
   const fetchPost = async () => {
     if (!id) throw new Error("Missing post ID");
-
     return await getPost(id);
   };
   const post = await fetchPost();

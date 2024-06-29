@@ -36,7 +36,7 @@ function UsernameHandler() {
           input: "text-foreground",
           errorMessage: "absolute",
           inputWrapper:
-            "border-border w-max  dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
+            "border-gray-400 border-opacity-80  w-max  dark:bg-black dark:bg-opacity-60 transition-colors-opacity hover:border-foreground  shadow-lg ",
         }}
         errorMessage={usernameError}
         isInvalid={!usernameError ? false : true}

@@ -1,6 +1,6 @@
 import { Switch } from "@nextui-org/switch";
 import { useTheme } from "next-themes";
-import React, { useEffect } from "react";
+import React from "react";
 import { IoMoon, IoSunny } from "react-icons/io5";
 
 interface ThemeProps {

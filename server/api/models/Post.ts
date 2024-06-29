@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 export interface Comment {
   _id: String;
   author: String;
+  username?: String;
   body: String;
   date: Date;
   updated?: Date;
@@ -13,6 +14,10 @@ const PostSchema = new Schema({
   author: {
     type: String,
     required: true,
+  },
+  username: {
+    type: String,
+    default: "",
   },
   title: {
     type: String,
