@@ -21,7 +21,6 @@ function PostsLoader({ posts }: { posts: Post[] }) {
     inView &&
       posts.length > loadedPosts.length &&
       setLoadedPosts([...loadedPosts, ...loadPagePosts()]);
-    console.log(loadedPosts);
   }, [inView]);
 
   return (

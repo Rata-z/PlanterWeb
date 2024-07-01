@@ -1,10 +1,5 @@
 import * as admin from "firebase-admin/app";
-import {
-  BaseAuth,
-  GetUsersResult,
-  ListUsersResult,
-  getAuth,
-} from "firebase-admin/auth";
+import { ListUsersResult, getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 
 export const connectFirebase = (): void => {

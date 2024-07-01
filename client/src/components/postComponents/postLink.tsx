@@ -17,6 +17,7 @@ function PostLink({ post }: { post: Post }) {
             src={post.image}
             className="rounded-lg"
             quality={50}
+            sizes="(min-width: 2140px) 72px, (min-width: 740px) calc(0.87vw + 56px), (min-width: 520px) 65px, calc(3.5vw + 45px)"
             fill
             alt="Post Image"
           />

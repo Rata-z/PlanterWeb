@@ -30,7 +30,7 @@ function ImageCard({ body, image }: ImageCardProps) {
           >
             <div
               className={
-                "text-card-card-foreground prose line-clamp-10 text-left prose-headings:text-card-foreground prose-strong:text-foreground dark:prose-pre:bg-gray-900 sm:line-clamp-7"
+                "text-card-card-foreground prose line-clamp-10 text-left prose-headings:text-card-foreground prose-p:text-card-foreground prose-strong:text-foreground dark:prose-pre:bg-gray-900 sm:line-clamp-7"
               }
               dangerouslySetInnerHTML={{ __html: body }}
             />

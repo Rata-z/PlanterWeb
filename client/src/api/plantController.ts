@@ -28,6 +28,7 @@ export const getPlants = async (token: string) => {
       next: { revalidate: 15 },
     });
     const data: Plant[] | ErrorMessage = await response.json();
+    console.log(data);
     if (!response.ok) {
       if (isErrorMessage(data))
         throw new Error(`Fetching error: ${data.message}`);

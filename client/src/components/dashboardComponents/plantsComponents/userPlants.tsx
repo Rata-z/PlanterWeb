@@ -19,6 +19,7 @@ function UserPlants() {
     }
     const token = await currentUser.getIdToken();
     const plantList = await getPlants(token);
+    console.log(token);
     setPlantList(plantList.sort((a, b) => a.title.localeCompare(b.title)));
   };
 
@@ -33,7 +34,7 @@ function UserPlants() {
           {plants.map((plant) => {
             return (
               <div
-                className="flex min-h-64 w-full flex-col items-center justify-center rounded-2xl border-t-2 border-ring bg-accent p-3 text-small shadow-xl"
+                className="border-ring flex min-h-64 w-full flex-col items-center justify-center rounded-2xl border-t-2 bg-accent p-3 text-small shadow-xl"
                 key={plant.plantId}
               >
                 <PiPlantLight size={98} className="rounded-xl border-2 p-1" />

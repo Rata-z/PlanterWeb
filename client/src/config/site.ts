@@ -2,9 +2,9 @@ export const siteConfig = {
   name: "PlanterWeb",
   url: "https://planter-web.com",
   description: "Blogs about plant care",
-  author: "4-Rata",
+  author: "Rata-z",
   links: {
-    github: "https://github.com/4-Rata/planter-web/",
+    github: "https://github.com/Rata-z/planter-web/",
     linkedin: "https://www.linkedin.com/in/maciej-pawluczuk/",
   },
 };

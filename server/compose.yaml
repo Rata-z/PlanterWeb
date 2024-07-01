@@ -1,0 +1,12 @@
+services:
+  backend:
+    image: rataz/planterweb:1.0
+    env_file:
+      - .env
+    build: .
+    volumes:
+      - ./serviceAccountKey.json:/app/serviceAccountKey.json
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/serviceAccountKey.json
+    ports:
+      - "5000:80"
