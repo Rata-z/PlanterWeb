@@ -1,5 +1,5 @@
 //after developement remove localhost and || !origin
-const whitelist = ["http://localhost:3000"];
+const whitelist = ["https://planter-web.vercel.app/"];
 export const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
