@@ -8,8 +8,8 @@
         maskUnits="userSpaceOnUse"
         x="14"
         y="29"
-        width="348"
-        height="77"
+        width="124"
+        height="35"
         fill="#000"
       >
         <path fill="#fff" d="M14 29h348v77H14z" />
