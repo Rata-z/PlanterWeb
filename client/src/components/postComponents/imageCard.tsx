@@ -26,11 +26,11 @@ function ImageCard({ body, image }: ImageCardProps) {
           onClick={() => toggleVisibility()}
         >
           <div
-            className={`size-full text-ellipsis bg-black bg-opacity-50 p-3 ${detailsVisibility}`}
+            className={`size-full text-ellipsis bg-black bg-opacity-60 p-3 ${detailsVisibility}`}
           >
             <div
               className={
-                "prose line-clamp-10 text-left text-card-foreground prose-headings:text-card-foreground dark:prose-pre:bg-gray-900 sm:line-clamp-7"
+                "text-card-card-foreground prose line-clamp-10 text-left prose-headings:text-card-foreground prose-strong:text-foreground dark:prose-pre:bg-gray-900 sm:line-clamp-7"
               }
               dangerouslySetInnerHTML={{ __html: body }}
             />

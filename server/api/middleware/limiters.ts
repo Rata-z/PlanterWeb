@@ -72,3 +72,11 @@ export const deleteCommentLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
   // store: ... , // Redis, Memcached, etc. See below.
 });
+export const getPlantsLimiter = rateLimit({
+  windowMs: 15 * 1000, //15 seconds
+  limit: 3,
+  message: { message: "Action Error: Reached action limit. Try again later" },
+  standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+  // store: ... , // Redis, Memcached, etc. See below.
+});

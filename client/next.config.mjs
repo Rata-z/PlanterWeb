@@ -2,7 +2,7 @@
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
-    domains: ['swanhose.com', 'themoviedb.org'],
+    domains: ['img.freepik.com', 'images.unsplash.com', 'cdn.pixabay.com'],
   },
 }
 

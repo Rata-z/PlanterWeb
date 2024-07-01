@@ -40,11 +40,16 @@ function PostDetailsRenderer({ post }: { post: Post }) {
           <div className="flex flex-row items-end gap-1">
             <LuCalendarDays className="size-4 self-start" />
             <span>{format(new Date(post.date), "yyyy-MM-dd")}</span>
+            {post.updated && (
+              <span>
+                (Last update: {format(new Date(post.updated), "yyyy-MM-dd")})
+              </span>
+            )}
           </div>
           <UserLink author={post.author} username={post.username} />
         </div>
       </div>
-      <div className="prose prose-blue flex min-w-full flex-col gap-3 pb-2 prose-headings:text-foreground prose-p:text-foreground prose-blockquote:text-foreground prose-code:text-card-foreground prose-ol:text-border prose-li:text-foreground prose-td:text-foreground dark:prose-pre:bg-gray-900">
+      <div className="prose prose-blue flex min-w-full flex-col gap-3 pb-2 prose-headings:text-foreground prose-p:text-foreground prose-blockquote:text-foreground prose-strong:text-foreground prose-code:text-card-foreground prose-ol:text-border prose-li:text-foreground prose-td:text-foreground dark:prose-pre:bg-gray-900">
         <div
           className="border-borde w-full items-center rounded-b-2xl bg-accent px-2 pt-2 shadow-lg"
           dangerouslySetInnerHTML={{ __html: result }}

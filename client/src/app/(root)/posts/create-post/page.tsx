@@ -22,8 +22,20 @@ function CreatePost() {
   const router = useRouter();
   const { currentUser } = useAuth();
   const postId = useSearchParams().get("id");
+  const defaultValue = `# Welcome!
+This editor allows you to create and format your documents using Markdown syntax. 
+## Cover Photo Requirements
+Currently images are only allowed as a single cover photo.
 
-  const [body, setBody] = useState<string>("# Hello Editor");
+To attach your cover photo, paste it's source path. The source path must be from one of the following sites:
+
+1. [freepik.com](https://freepik.com)
+2. [unsplash.com](https://unsplash.com/)
+3. [pixabay.com](https://pixabay.com/)
+
+### Enjoy!`;
+
+  const [body, setBody] = useState<string>(defaultValue);
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
@@ -78,7 +90,7 @@ function CreatePost() {
   return (
     <section className="flex w-full justify-center">
       <div className="flex h-full w-full max-w-screen-xl flex-col px-4">
-        <div className="flex w-full flex-row items-center justify-between pb-2">
+        <div className="flex w-full flex-row items-center justify-between pb-3">
           <Input
             isRequired
             type="text"
@@ -99,7 +111,7 @@ function CreatePost() {
           />
           <Input
             type="text"
-            label="Image Path"
+            label="Cover Image Path"
             value={image}
             onChange={(text) => {
               text.target.value == ""
@@ -135,6 +147,7 @@ function CreatePost() {
         <MdEditor
           modelValue={body}
           onChange={setBody}
+          noUploadImg
           defToolbars={[<Emoji key="emoji-extension" />]}
           toolbarsExclude={["save", "github", "katex", "htmlPreview", "image"]}
           theme={resolvedTheme === "dark" ? "dark" : "light"}
