@@ -24,7 +24,7 @@ export function isErrorMessage(
 
 export const getPost = async (id: string) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+    const response = await fetch(`${process.env.HOSTNAME}/api/posts/${id}`, {
       next: { revalidate: 15 },
     });
     const data: Post | ErrorMessage = await response.json();
@@ -47,7 +47,7 @@ export const addPost = async (
   image: string | undefined,
 ) => {
   try {
-    const response = await fetch("http://localhost:5000/api/posts", {
+    const response = await fetch(`${process.env.HOSTNAME}/api/posts`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ export const addPost = async (
 export const togglePostLike = async (token: string, id: string) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/posts/${id}/likes`,
+      `${process.env.HOSTNAME}/api/posts/${id}/likes`,
       {
         method: "PUT",
         headers: {
@@ -99,7 +99,7 @@ export const togglePostLike = async (token: string, id: string) => {
 
 export const getPosts = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/posts", {
+    const response = await fetch(`${process.env.HOSTNAME}/api/posts`, {
       next: { revalidate: 30 },
     });
 
@@ -117,7 +117,7 @@ export const getPosts = async () => {
 };
 export const getUserPosts = async (userID: string) => {
   try {
-    const response = await fetch("http://localhost:5000/api/posts", {
+    const response = await fetch(`${process.env.HOSTNAME}/api/posts`, {
       next: { revalidate: 30 },
     });
 
@@ -141,7 +141,7 @@ export const editPost = async (
 ) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/posts/${post._id}`,
+      `${process.env.HOSTNAME}/api/posts/${post._id}`,
       {
         method: "PUT",
         headers: {
@@ -168,7 +168,7 @@ export const editPost = async (
 };
 export const deletePost = async (token: string, id: string) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+    const response = await fetch(`${process.env.HOSTNAME}/api/posts/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

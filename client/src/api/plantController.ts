@@ -19,7 +19,7 @@ export function isErrorMessage(
 
 export const getPlants = async (token: string) => {
   try {
-    const response = await fetch("http://localhost:5000/api/plants", {
+    const response = await fetch(`${process.env.HOSTNAME}/api/plants`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
