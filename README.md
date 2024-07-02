@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="client/src/assets/icons/logoLong.svg" alt="Logo" />
+  <img src="client/src/assets/icons/logoLong.svg" alt="Logo" width="800" height="300" />
   <h1> PlanterWeb </h1>
 </div>
 
@@ -11,8 +11,13 @@
 * [Hosting](#hosting)
 * [Future Updates](#future-updates)
 
+
+ <img align="center" alt="about page" src="/client/src/assets/demo/about.png" width="600" height="600"/>
 ## Intro
 PlanterWeb is a comprehensive full -stack application designed for plant enthusiasts to create, explore, and engage with a plant care oriented blogs. Its primary function is to provide practical tips and guides for users about various aspects of plant care. Additionaly, PlanterWeb is seamlessly integrated with its related mobile application [Planter](https://github.com/Rata-z/Planter). This compatibility allows users to track their plant's watering cycles and other care parameters directly from their web interface. 
+
+
+
 ## Tech Stack
 | Library                                    | Version    | Category             |
 |--------------------------------------------|------------|----------------------|
@@ -30,13 +35,25 @@ PlanterWeb is a comprehensive full -stack application designed for plant enthusi
 | Docker                                     | 24.0.5     | Containerization     |
 | Firestore                                  | 9.23.0     | Cloud Database       |
 | REST                                       | -          | API Architecture     |
+
+## Themes
+
+ | <img alt="Light Theme" src="/client/src/assets/demo/light.png" width="420" height="300"/> | <img alt="Dark Theme" src="/client/src/assets/demo/dark.png" width="420" height="300"/>|
+ |:--:|:--: | 
+| *Light*|*Dark* |
+
+
+
 ## Key Features
 #### User Authentication
 Users can register and sign in using their email address and password, with an additional layer of security provided by email verification.
 Alternatively, users can also sign in using their Google account.
 
+ 
 #### Blogs
 Users can write, read, comment and like posts. Posts are created using a markdown editor integrated directly into the site, allowing for easy and intuitive content creation.
+
+ <img alt="Blog Markdown" src="/client/src/assets/demo/editor.png" width="450" height="280"/>
 
 #### Plant Watering Tracker
 Users can track the watering cycle of their plants, previously added through the mobile application.
@@ -46,6 +63,8 @@ Users can log in with their mobile app accounts and additionally manage their ac
 
 ## Hosting
 The app is currently hosted on Vercel, with the backend containerized using Docker and hosted on Fly.io.
+
+[PlanterWeb](planter-web-git-main-ratas-projects-bed83137.vercel.app)
 
 ## Future Updates
 #### Plant Management
