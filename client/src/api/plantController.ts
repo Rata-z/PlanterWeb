@@ -19,7 +19,7 @@ export function isErrorMessage(
 
 export const getPlants = async (token: string) => {
   try {
-    const response = await fetch(`${process.env.HOSTNAME}/api/plants`, {
+    const response = await fetch(`https://planter-web.fly.dev/api/plants`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

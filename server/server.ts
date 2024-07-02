@@ -19,10 +19,6 @@ connectFirebase();
 connectDB();
 export const firestoreDB = connectFirestore();
 
-app.get("/api/home", (req, res) => {
-  res.json({ message: "Hello World!" });
-});
-
 app.use("/api/posts", postRoutes);
 app.use("/api/plants", plantRoutes);
 

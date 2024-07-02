@@ -24,9 +24,13 @@ export function isErrorMessage(
 
 export const getPost = async (id: string) => {
   try {
-    const response = await fetch(`${process.env.HOSTNAME}/api/posts/${id}`, {
-      next: { revalidate: 15 },
-    });
+    const response = await fetch(
+      `https://planter-web.fly.dev/api/posts/${id}`,
+      {
+        method: "GET",
+        next: { revalidate: 15 },
+      },
+    );
     const data: Post | ErrorMessage = await response.json();
 
     if (!response.ok) {
@@ -47,7 +51,7 @@ export const addPost = async (
   image: string | undefined,
 ) => {
   try {
-    const response = await fetch(`${process.env.HOSTNAME}/api/posts`, {
+    const response = await fetch(`https://planter-web.fly.dev/api/posts`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -72,7 +76,7 @@ export const addPost = async (
 export const togglePostLike = async (token: string, id: string) => {
   try {
     const response = await fetch(
-      `${process.env.HOSTNAME}/api/posts/${id}/likes`,
+      `https://planter-web.fly.dev/api/posts/${id}/likes`,
       {
         method: "PUT",
         headers: {
@@ -99,8 +103,8 @@ export const togglePostLike = async (token: string, id: string) => {
 
 export const getPosts = async () => {
   try {
-    const response = await fetch(`${process.env.HOSTNAME}/api/posts`, {
-      next: { revalidate: 30 },
+    const response = await fetch(`https://planter-web.fly.dev/api/posts`, {
+      next: { revalidate: 15 },
     });
 
     const data: Post[] | ErrorMessage = await response.json();
@@ -117,8 +121,8 @@ export const getPosts = async () => {
 };
 export const getUserPosts = async (userID: string) => {
   try {
-    const response = await fetch(`${process.env.HOSTNAME}/api/posts`, {
-      next: { revalidate: 30 },
+    const response = await fetch(`https://planter-web.fly.dev/api/posts`, {
+      next: { revalidate: 15 },
     });
 
     const data: Post[] | ErrorMessage = await response.json();
@@ -141,7 +145,7 @@ export const editPost = async (
 ) => {
   try {
     const response = await fetch(
-      `${process.env.HOSTNAME}/api/posts/${post._id}`,
+      `https://planter-web.fly.dev/api/posts/${post._id}`,
       {
         method: "PUT",
         headers: {
@@ -149,7 +153,7 @@ export const editPost = async (
           "Content-Type": "application/json",
         },
         body: JSON.stringify(post),
-        next: { revalidate: 30 },
+        next: { revalidate: 15 },
       },
     );
 
@@ -168,13 +172,16 @@ export const editPost = async (
 };
 export const deletePost = async (token: string, id: string) => {
   try {
-    const response = await fetch(`${process.env.HOSTNAME}/api/posts/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `https://planter-web.fly.dev/api/posts/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
 
     if (!response.ok) {
       const data: ErrorMessage = await response.json();

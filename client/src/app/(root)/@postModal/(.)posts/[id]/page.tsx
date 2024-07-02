@@ -1,7 +1,6 @@
 "use client";
 import { Post, getPost } from "@/api/posts/postController";
 import ModalWrapper from "@/components/modalWrapper";
-import { Loader } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import PostDetailsRenderer from "@/components/postComponents/postDetailsRenderer";
 import { Spinner } from "@nextui-org/spinner";

@@ -17,7 +17,7 @@ export const editComment = async (
 ) => {
   try {
     const response = await fetch(
-      `${process.env.HOSTNAME}/api/posts/${id}/${commentID}`,
+      `https://planter-web.fly.dev/api/posts/${id}/${commentID}`,
       {
         method: "PUT",
         headers: {
@@ -49,7 +49,7 @@ export const deleteComment = async (
 ) => {
   try {
     const response = await fetch(
-      `${process.env.HOSTNAME}/api/posts/${id}/${commentID}`,
+      `https://planter-web.fly.dev/api/posts/${id}/${commentID}`,
       {
         method: "DELETE",
         headers: {
@@ -80,7 +80,7 @@ export const addComment = async (
 ) => {
   try {
     const response = await fetch(
-      `${process.env.HOSTNAME}/api/posts/${id}/comments`,
+      `https://planter-web.fly.dev/api/posts/${id}/comments`,
       {
         method: "POST",
         headers: {

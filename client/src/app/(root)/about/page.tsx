@@ -22,7 +22,7 @@ function About() {
       </div>
       <div className="flex w-[60%] flex-col items-center gap-5">
         <h1 className="font-halant text-5xl">Features</h1>
-        <div className="flex w-full flex-row justify-between">
+        <div className="flex w-full flex-col items-center gap-4 md:flex-row md:justify-between md:gap-0">
           <FeatureCard
             text="Share your plant care tips, experiences, and guides."
             icon={<FaPencilAlt size={45} />}

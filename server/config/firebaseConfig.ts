@@ -1,12 +1,17 @@
-import * as admin from "firebase-admin/app";
+import * as app from "firebase-admin/app";
+import admin from "firebase-admin";
 import { ListUsersResult, getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 
 export const connectFirebase = (): void => {
-  const credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+  const buffer = Buffer.from(
+    process.env.GOOGLE_APPLICATION_CREDENTIALS,
+    "base64"
+  );
+  const credential = JSON.parse(buffer.toString("utf-8"));
 
-  admin.initializeApp({
-    credential: admin.applicationDefault(),
+  app.initializeApp({
+    credential: admin.credential.cert(credential),
   });
 
   console.log("Firebase connected");

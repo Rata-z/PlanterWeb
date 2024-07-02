@@ -19,7 +19,6 @@ function UserPlants() {
     }
     const token = await currentUser.getIdToken();
     const plantList = await getPlants(token);
-    console.log(token);
     setPlantList(plantList.sort((a, b) => a.title.localeCompare(b.title)));
   };
 

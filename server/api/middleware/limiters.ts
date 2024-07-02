@@ -18,7 +18,7 @@ export const addCommentLimiter = rateLimit({
 });
 export const editCommentLimiter = rateLimit({
   windowMs: 10 * 1000, //10 seconds
-  limit: 2,
+  limit: 3,
   message: { message: "Action Error: Reached action limit. Try again later" },
   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
@@ -34,7 +34,7 @@ export const getPostLimiter = rateLimit({
 });
 export const getPostsLimiter = rateLimit({
   windowMs: 15 * 1000, //15 seconds
-  limit: 3,
+  limit: 10,
   message: { message: "Action Error: Reached action limit. Try again later" },
   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
@@ -42,7 +42,7 @@ export const getPostsLimiter = rateLimit({
 });
 export const addPostLimiter = rateLimit({
   windowMs: 60 * 1000, //60 seconds
-  limit: 1,
+  limit: 3,
   message: { message: "Action Error: Reached action limit. Try again later" },
   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
@@ -50,7 +50,7 @@ export const addPostLimiter = rateLimit({
 });
 export const deletePostLimiter = rateLimit({
   windowMs: 10 * 1000, //10 seconds
-  limit: 3,
+  limit: 8,
   message: { message: "Action Error: Reached action limit. Try again later" },
   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
@@ -58,7 +58,7 @@ export const deletePostLimiter = rateLimit({
 });
 export const editPostLimiter = rateLimit({
   windowMs: 20 * 1000, //20 seconds
-  limit: 1,
+  limit: 4,
   message: { message: "Action Error: Reached action limit. Try again later" },
   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
@@ -66,7 +66,7 @@ export const editPostLimiter = rateLimit({
 });
 export const deleteCommentLimiter = rateLimit({
   windowMs: 10 * 1000, //20 seconds
-  limit: 3,
+  limit: 10,
   message: { message: "Action Error: Reached action limit. Try again later" },
   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
@@ -74,7 +74,7 @@ export const deleteCommentLimiter = rateLimit({
 });
 export const getPlantsLimiter = rateLimit({
   windowMs: 15 * 1000, //15 seconds
-  limit: 3,
+  limit: 15,
   message: { message: "Action Error: Reached action limit. Try again later" },
   standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
