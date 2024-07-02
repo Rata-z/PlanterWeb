@@ -21,19 +21,19 @@ PlanterWeb is a comprehensive full -stack application designed for plant enthusi
 ## Tech Stack
 | Library                                    | Version    | Category             |
 |--------------------------------------------|------------|----------------------|
-| Next.js                                    | 13.4.5     | Framework            |
+| Next.js                                    | 14.2.4     | Framework            |
 | React                                      | 18.2.0     | UI Framework         |
-| Node.js                                    | 18.16.0    | Runtime Environment  |
-| MongoDB                                    | 5.1.0      | Database             |
-| TypeScript                                 | 5.3.0      | Language             |
-| Express.js                                 | 4.18.2     | Server Framework     |
-| NextUI                                     | 2.3.0      | UI Components        |
-| Firebase                                   | 9.23.0     | Development Tools    |
-| Vercel                                     | 28.0.2     | Deployment Platform  |
-| Micromark                                  | 4.0.4      | Markdown Processor   |
-| Tailwind CSS                               | 3.3.1      | CSS Framework        |
-| Docker                                     | 24.0.5     | Containerization     |
-| Firestore                                  | 9.23.0     | Cloud Database       |
+| Node.js                                    | 20.15.0    | Runtime Environment  |
+| MongoDB/Mongoose                           | 8.4.0      | Database             |
+| TypeScript                                 | 5.4.5      | Language             |
+| Express.js                                 | 4.19.2     | Server Framework     |
+| NextUI                                     | 2.2.5      | UI Components        |
+| Firebase/Firebase-admin                    | 12.2.0     | Development Tools    |
+| Vercel                                     |  -         | Deployment Platform  |
+| Micromark                                  | 4.0.0      | Markdown Processor   |
+| Tailwind CSS                               | 3.4.1      | CSS Framework        |
+| Docker                                     | 4.31.1     | Containerization     |
+| Firestore                                  | 7.7.0      | Cloud Database       |
 | REST                                       | -          | API Architecture     |
 
 ## Themes
