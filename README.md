@@ -64,7 +64,7 @@ Users can log in with their mobile app accounts and additionally manage their ac
 ## Hosting
 The app is currently hosted on Vercel, with the backend containerized using Docker and hosted on Fly.io.
 
-[PlanterWeb](planter-web-git-main-ratas-projects-bed83137.vercel.app)
+[PlanterWeb](https://planter-web.vercel.app/)
 
 ## Future Updates
 #### Plant Management
