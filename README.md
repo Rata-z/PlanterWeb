@@ -61,15 +61,4 @@ Users can track the watering cycle of their plants, previously added through the
 #### Account Synchronization and Management
 Users can log in with their mobile app accounts and additionally manage their accounts by changing their password, updating their username, or deleting their account.
 
-## Hosting
-The app is currently hosted on Vercel, with the backend containerized using Docker and hosted on Fly.io.
-
-[PlanterWeb](https://planter-web.vercel.app/)
-
-## Future Updates
-#### Plant Management
-Allowing users to add, edit, and delete plants from their list, synchronized with the mobile application.
-
-#### Blog Filtering
-Users will be able to filter posts by keywords and tags for a more refined browsing experience.
 
