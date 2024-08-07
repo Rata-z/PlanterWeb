@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="client/src/assets/icons/logoLong.svg" alt="Logo" width="800" height="300" />
+  <img src="client/src/assets/icons/logoLongWeb.svg" alt="Logo" width="800" height="300" />
   <h1> PlanterWeb </h1>
 </div>
 
