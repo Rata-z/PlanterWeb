@@ -61,4 +61,6 @@ Users can track the watering cycle of their plants, previously added through the
 #### Account Synchronization and Management
 Users can log in with their mobile app accounts and additionally manage their accounts by changing their password, updating their username, or deleting their account.
 
+ <img alt="Blog Markdown" src="/client/src/assets/demo/planterWebSettings.png" width="450" height="280"/>
+
 
